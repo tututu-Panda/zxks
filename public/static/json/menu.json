@@ -1,0 +1,39 @@
+[
+  
+  {
+    "title": "导入数据",
+    "icon": "&#xe609;",
+    "spread": false,
+    "children": [
+      {
+        "title": "数据导入",
+        "icon": "&#xe62f;",
+        "href": "admin/login"
+      }
+    ]
+  },
+  {
+    "title": "数据导出",
+    "icon": "&#xe622;",
+    "spread": false,
+    "children": [
+      {
+        "title": "导出数据",
+        "icon": "&#xe601;",
+        "href": "Home/Data/DownData"
+      }
+    ]
+  },
+  {
+    "title": "数据展示",
+    "icon": "&#xe63c;",
+    "spread": false,
+    "children": [
+      {
+        "title": "查询数据",
+        "icon": "&#xe615;",
+        "href": "Home/ShowCost/CostList"
+      }
+    ]
+  }
+]
