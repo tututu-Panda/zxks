@@ -29,7 +29,7 @@ class LoginController extends Controller
     public function LoginCheck() {
         $name = Input::get('name') ;
         $password = Input::get('password') ;
-        if(Auth::attempt(['name'=>$name,'password'=>$password])){
+        if(Auth::admin()->attempt(['name'=>$name,'password'=>$password])){
                 // 跳转到后台首页
 //            return redirect()->intended("admin/");
             $array = [
