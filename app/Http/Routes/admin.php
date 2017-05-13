@@ -3,7 +3,7 @@
 
 
 
-// 命名空间为‘Admin’，url路由前缀为‘admin’，
+// 命名空间为‘Sysuser’，url路由前缀为‘admin’，
 Route::group(['namespace'=>'Admin','prefix'=>'admin'],function() {
 //    用户登录模板
     Route::get('/login','LoginController@Login');
@@ -16,7 +16,7 @@ Route::group(['namespace'=>'Admin','prefix'=>'admin'],function() {
 });
 
 
-// 通过中间件’auth’，验证功能，命名空间为‘Admin’，url路由前缀为‘admin’
+// 通过中间件’auth’，验证功能，命名空间为‘Sysuser’，url路由前缀为‘admin’
 Route::group(['middleware'=>'auth','namespace'=>'Admin','prefix'=>'admin'],function(){
 //    退出登录
     Route::get('/logout','LoginController@LogOut');

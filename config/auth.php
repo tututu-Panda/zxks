@@ -7,13 +7,13 @@ return [
     'multi-auth' => [
         'admin' => [
             'driver' => 'eloquent',
-            'model'  => App\Models\Admin::class,
-            'table'  => 'admins'
+            'model'  => App\Models\Sysuser::class,
+            'table'  => 'sysusers'
         ],
-        'user' => [
+        'student' => [
             'driver' => 'eloquent',
-            'model'  => App\Models\User::class,
-            'table'  => 'users'
+            'model'  => App\Models\Student::class,
+            'table'  => 'students'
         ]
     ],
 

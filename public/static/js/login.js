@@ -21,9 +21,9 @@ layui.config({
                         title:'提示',
                     });
                 }else{
-                    $.post(loginurl,{name:rec.field['name'],password:rec.field['password'],_token:rec.field['_token']}, function(data, textStatus, xhr) {
+                    $.post(loginurl,{account:rec.field['account'],password:rec.field['password'],_token:rec.field['_token']}, function(data, textStatus, xhr) {
                         if(!data.success){
-                            layer.alert('账号不存在或账号密码填写错误', {
+                            layer.alert(data.data, {
                                 icon: 2,
                                 title:'提示',
                             });

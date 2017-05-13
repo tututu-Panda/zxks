@@ -27,9 +27,9 @@ class LoginController extends Controller
      * 验证用户登录
      */
     public function LoginCheck() {
-        $name = Input::get('name') ;
+        $account = Input::get('account') ;
         $password = Input::get('password') ;
-        if(Auth::admin()->attempt(['name'=>$name,'password'=>$password])){
+        if(Auth::admin()->attempt(['account'=>$account,'password'=>$password])){
                 // 跳转到后台首页
 //            return redirect()->intended("admin/");
             $array = [
@@ -37,7 +37,7 @@ class LoginController extends Controller
                 'success' => true,
             ];
             // 存储用户session
-            session(['name'=>$name]);
+            session(['account'=>$account]);
         }else {
             $array = [
                 'data' => '用户或密码错误',
