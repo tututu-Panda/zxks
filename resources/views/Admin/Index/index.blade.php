@@ -25,7 +25,7 @@
                 <li class="layui-nav-item">
                     <a href="javascript:;" class="admin-header-user">
                         <img src="{{URL::asset('static/img/default.jpg')}}" />
-                        <span>test</span>
+                        <span>{{$name}}</span>
                     </a>
                     <dl class="layui-nav-child">
                         <dd>
