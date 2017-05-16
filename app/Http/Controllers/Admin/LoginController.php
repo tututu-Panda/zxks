@@ -92,7 +92,7 @@ class LoginController extends Controller
      * 用户登出
      */
     public function LogOut(Request $request) {
-        Auth::logout();
+
         $request->session()->flush();
         // 登出后默认跳到登录路由
         return redirect('admin/login');

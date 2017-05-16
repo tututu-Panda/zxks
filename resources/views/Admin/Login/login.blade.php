@@ -54,9 +54,9 @@
 </div>
 <script src="{{URL::asset('static/layui/layui.js')}}"></script>
 <script type="text/javascript">
-    var loginurl = "/admin/loginCheck";
-    var loginrec = "/admin";
-    var checkurl = "/admin/checkVerify";
+    var loginurl = "{{url('/admin/loginCheck')}}";
+    var loginrec = "{{url('/admin')}}";
+    var checkurl = "{{url('/admin/checkVerify')}}";
 </script>
 <script src="{{URL::asset('static/js/login.js')}}"></script>
 

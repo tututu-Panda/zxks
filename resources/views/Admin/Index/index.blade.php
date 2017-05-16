@@ -35,7 +35,7 @@
                             <a href="javascript:;"><i class="fa fa-gear" aria-hidden="true"></i> 设置</a>
                         </dd>
                         <dd>
-                            <a href="/admin/logout"><i class="fa fa-sign-out" aria-hidden="true"></i> 注销</a>
+                            <a href="{{url("/admin/logout")}}"><i class="fa fa-sign-out" aria-hidden="true"></i> 注销</a>
                         </dd>
                     </dl>
                 </li>

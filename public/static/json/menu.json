@@ -7,7 +7,7 @@
     "children": [
       {
         "title": "个人信息",
-        "icon": "&#xe62f;",
+        "icon": "&#xe612;",
         "href": "admin/sysuser/index"
       }
     ]
@@ -19,7 +19,7 @@
     "children": [
       {
         "title": "题库管理",
-        "icon": "&#xe601;",
+        "icon": "&#xe635;",
         "href": "admin/DataBase/index"
       }
     ]
@@ -39,12 +39,12 @@
   },
   {
     "title": "试卷管理",
-    "icon": "&#xe63c;",
+    "icon": "&#xe624;",
     "spread": false,
     "children": [
       {
         "title": "试卷列表",
-        "icon": "&#xe615;",
+        "icon": "&#xe63c;",
         "href": "admin/Paper/index"
       }
     ]

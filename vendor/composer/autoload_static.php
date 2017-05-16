@@ -292,54 +292,6 @@ class ComposerStaticInit893152c18537b0d16d8e7912508fdd14
     );
 
     public static $classMap = array (
-<<<<<<< HEAD
-=======
-        'App\\Console\\Commands\\Inspire' => __DIR__ . '/../..' . '/app/Console/Commands/Inspire.php',
-        'App\\Console\\Kernel' => __DIR__ . '/../..' . '/app/Console/Kernel.php',
-        'App\\Events\\Event' => __DIR__ . '/../..' . '/app/Events/Event.php',
-        'App\\Exceptions\\Handler' => __DIR__ . '/../..' . '/app/Exceptions/Handler.php',
-        'App\\Http\\Controllers\\Admin\\IndexController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/IndexController.php',
-        'App\\Http\\Controllers\\Admin\\LoginController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/LoginController.php',
-        'App\\Http\\Controllers\\Auth\\AuthController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/AuthController.php',
-        'App\\Http\\Controllers\\Auth\\PasswordController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/PasswordController.php',
-        'App\\Http\\Controllers\\Controller' => __DIR__ . '/../..' . '/app/Http/Controllers/Controller.php',
-        'App\\Http\\Controllers\\Home\\ExamController' => __DIR__ . '/../..' . '/app/Http/Controllers/Home/ExamController.php',
-        'App\\Http\\Controllers\\Home\\GradeController' => __DIR__ . '/../..' . '/app/Http/Controllers/Home/GradeController.php',
-        'App\\Http\\Controllers\\Home\\IndexController' => __DIR__ . '/../..' . '/app/Http/Controllers/Home/IndexController.php',
-        'App\\Http\\Controllers\\Home\\LoginController' => __DIR__ . '/../..' . '/app/Http/Controllers/Home/LoginController.php',
-        'App\\Http\\Kernel' => __DIR__ . '/../..' . '/app/Http/Kernel.php',
-        'App\\Http\\Middleware\\AuthHome' => __DIR__ . '/../..' . '/app/Http/Middleware/AuthHome.php',
-        'App\\Http\\Middleware\\Authenticate' => __DIR__ . '/../..' . '/app/Http/Middleware/Authenticate.php',
-        'App\\Http\\Middleware\\EncryptCookies' => __DIR__ . '/../..' . '/app/Http/Middleware/EncryptCookies.php',
-        'App\\Http\\Middleware\\RedirectIfAuthenticated' => __DIR__ . '/../..' . '/app/Http/Middleware/RedirectIfAuthenticated.php',
-        'App\\Http\\Middleware\\VerifyCsrfToken' => __DIR__ . '/../..' . '/app/Http/Middleware/VerifyCsrfToken.php',
-        'App\\Http\\Requests\\Request' => __DIR__ . '/../..' . '/app/Http/Requests/Request.php',
-        'App\\Jobs\\Job' => __DIR__ . '/../..' . '/app/Jobs/Job.php',
-        'App\\Models\\Home\\Student' => __DIR__ . '/../..' . '/app/Models/Home/Student.php',
-        'App\\Models\\Student' => __DIR__ . '/../..' . '/app/Models/Student.php',
-        'App\\Models\\Sysuser' => __DIR__ . '/../..' . '/app/Models/Sysuser.php',
-        'App\\Providers\\AppServiceProvider' => __DIR__ . '/../..' . '/app/Providers/AppServiceProvider.php',
-        'App\\Providers\\EventServiceProvider' => __DIR__ . '/../..' . '/app/Providers/EventServiceProvider.php',
-        'App\\Providers\\RouteServiceProvider' => __DIR__ . '/../..' . '/app/Providers/RouteServiceProvider.php',
-        'Carbon\\Carbon' => __DIR__ . '/..' . '/nesbot/carbon/src/Carbon/Carbon.php',
-        'Carbon\\CarbonInterval' => __DIR__ . '/..' . '/nesbot/carbon/src/Carbon/CarbonInterval.php',
-        'Carbon\\Exceptions\\InvalidDateException' => __DIR__ . '/..' . '/nesbot/carbon/src/Carbon/Exceptions/InvalidDateException.php',
-        'ClassPreloader\\ClassList' => __DIR__ . '/..' . '/classpreloader/classpreloader/src/ClassList.php',
-        'ClassPreloader\\ClassLoader' => __DIR__ . '/..' . '/classpreloader/classpreloader/src/ClassLoader.php',
-        'ClassPreloader\\ClassNode' => __DIR__ . '/..' . '/classpreloader/classpreloader/src/ClassNode.php',
-        'ClassPreloader\\ClassPreloader' => __DIR__ . '/..' . '/classpreloader/classpreloader/src/ClassPreloader.php',
-        'ClassPreloader\\Config' => __DIR__ . '/..' . '/classpreloader/classpreloader/src/Config.php',
-        'ClassPreloader\\Exceptions\\DirConstantException' => __DIR__ . '/..' . '/classpreloader/classpreloader/src/Exceptions/DirConstantException.php',
-        'ClassPreloader\\Exceptions\\FileConstantException' => __DIR__ . '/..' . '/classpreloader/classpreloader/src/Exceptions/FileConstantException.php',
-        'ClassPreloader\\Exceptions\\StrictTypesException' => __DIR__ . '/..' . '/classpreloader/classpreloader/src/Exceptions/StrictTypesException.php',
-        'ClassPreloader\\Exceptions\\VisitorExceptionInterface' => __DIR__ . '/..' . '/classpreloader/classpreloader/src/Exceptions/VisitorExceptionInterface.php',
-        'ClassPreloader\\Factory' => __DIR__ . '/..' . '/classpreloader/classpreloader/src/Factory.php',
-        'ClassPreloader\\Parser\\AbstractNodeVisitor' => __DIR__ . '/..' . '/classpreloader/classpreloader/src/Parser/AbstractNodeVisitor.php',
-        'ClassPreloader\\Parser\\DirVisitor' => __DIR__ . '/..' . '/classpreloader/classpreloader/src/Parser/DirVisitor.php',
-        'ClassPreloader\\Parser\\FileVisitor' => __DIR__ . '/..' . '/classpreloader/classpreloader/src/Parser/FileVisitor.php',
-        'ClassPreloader\\Parser\\NodeTraverser' => __DIR__ . '/..' . '/classpreloader/classpreloader/src/Parser/NodeTraverser.php',
-        'ClassPreloader\\Parser\\StrictTypesVisitor' => __DIR__ . '/..' . '/classpreloader/classpreloader/src/Parser/StrictTypesVisitor.php',
->>>>>>> dev
         'CreatePasswordResetsTable' => __DIR__ . '/../..' . '/database/migrations/2014_10_12_100000_create_password_resets_table.php',
         'CreateUsersTable' => __DIR__ . '/../..' . '/database/migrations/2014_10_12_000000_create_users_table.php',
         'DatabaseSeeder' => __DIR__ . '/../..' . '/database/seeds/DatabaseSeeder.php',
@@ -415,8 +367,7 @@ class ComposerStaticInit893152c18537b0d16d8e7912508fdd14
         'Hamcrest\\Util' => __DIR__ . '/..' . '/hamcrest/hamcrest-php/hamcrest/Hamcrest/Util.php',
         'Hamcrest\\Xml\\HasXPath' => __DIR__ . '/..' . '/hamcrest/hamcrest-php/hamcrest/Hamcrest/Xml/HasXPath.php',
         'IlluminateQueueClosure' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Queue/IlluminateQueueClosure.php',
-<<<<<<< HEAD
-=======
+
         'Illuminate\\Auth\\Access\\Gate' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Auth/Access/Gate.php',
         'Illuminate\\Auth\\Access\\HandlesAuthorization' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Auth/Access/HandlesAuthorization.php',
         'Illuminate\\Auth\\Access\\Response' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Auth/Access/Response.php',
@@ -1149,7 +1100,7 @@ class ComposerStaticInit893152c18537b0d16d8e7912508fdd14
         'Monolog\\Processor\\UidProcessor' => __DIR__ . '/..' . '/monolog/monolog/src/Monolog/Processor/UidProcessor.php',
         'Monolog\\Processor\\WebProcessor' => __DIR__ . '/..' . '/monolog/monolog/src/Monolog/Processor/WebProcessor.php',
         'Monolog\\Registry' => __DIR__ . '/..' . '/monolog/monolog/src/Monolog/Registry.php',
->>>>>>> dev
+
         'PHPUnit\\Framework\\Assert' => __DIR__ . '/..' . '/phpunit/phpunit/src/ForwardCompatibility/Assert.php',
         'PHPUnit\\Framework\\BaseTestListener' => __DIR__ . '/..' . '/phpunit/phpunit/src/ForwardCompatibility/BaseTestListener.php',
         'PHPUnit\\Framework\\TestCase' => __DIR__ . '/..' . '/phpunit/phpunit/src/ForwardCompatibility/TestCase.php',
