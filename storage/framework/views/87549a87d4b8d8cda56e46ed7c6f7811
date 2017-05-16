@@ -21,7 +21,7 @@
                 <label class="beg-login-icon">
                     <i class="layui-icon">&#xe612;</i>
                 </label>
-                <input type="text" name="name"  autocomplete="off" placeholder="输入账号" class="layui-input">
+                <input type="text" name="account"  autocomplete="off" placeholder="输入账号" class="layui-input">
             </div>
             <div class="layui-form-item">
                 <label class="beg-login-icon">

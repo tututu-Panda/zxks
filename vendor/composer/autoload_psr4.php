@@ -32,6 +32,7 @@ return array(
     'PhpParser\\' => array($vendorDir . '/nikic/php-parser/lib/PhpParser'),
     'Monolog\\' => array($vendorDir . '/monolog/monolog/src/Monolog'),
     'League\\Flysystem\\' => array($vendorDir . '/league/flysystem/src'),
+    'Kbwebs\\MultiAuth\\' => array($vendorDir . '/kbwebs/multiauth/src'),
     'Illuminate\\' => array($vendorDir . '/laravel/framework/src/Illuminate'),
     'Gregwar\\Captcha\\' => array($vendorDir . '/gregwar/captcha'),
     'Faker\\' => array($vendorDir . '/fzaninotto/faker/src/Faker'),
