@@ -1,0 +1,64 @@
+html {
+
+}
+body {
+    background-color: #ffffff;
+}
+.header {
+    margin-top: 0px;
+}
+.ui.secondary.menu {
+
+    border-bottom: 1px solid rgb(213,209,209);
+}
+.index_menu {
+    margin-left: 30px;
+    margin-top:15px;
+    font-size: 19px;
+    font-weight: 500;
+    color: #000000;
+
+}
+.footer {
+    margin-left: 210px;
+    margin-top: 30px;
+    margin-bottom: 15px;
+}
+.copyright {
+    margin-top: 20px;
+}
+.copyright p{
+    text-align: center;
+    font-size: 14px;
+    color:slategray;
+}
+
+/*侧边菜单栏*/
+.navbar-header {
+    font-size: 19px;
+    font-weight: 400;
+}
+.navbar-item {
+    padding-top: 10px;
+    font-size: 14px;
+
+}
+/**/
+.index-body {
+    min-height: 85vh;
+}
+.somepanel {
+    float: left;
+    width: 100%;
+    min-height: 85vh;
+    background-color: #f3f3f4;
+}
+.test {
+    float: left;
+    width: 100%;
+    margin-left: 5%;
+    margin-top: 10%;
+}
+
+
+

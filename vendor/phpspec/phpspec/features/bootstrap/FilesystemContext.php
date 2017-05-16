@@ -35,10 +35,10 @@ class FilesystemContext implements Context
         $this->filesystem->mkdir($this->workingDirectory);
         chdir($this->workingDirectory);
 
-        $this->filesystem->mkdir($this->workingDirectory . '/layouts');
+        $this->filesystem->mkdir($this->workingDirectory . '/vendor');
         $this->filesystem->copy(
             __DIR__ . '/autoloader/autoload.php',
-            $this->workingDirectory . '/layouts/autoload.php'
+            $this->workingDirectory . '/vendor/autoload.php'
         );
     }
 
@@ -138,6 +138,6 @@ class FilesystemContext implements Context
      */
     public function iHaveNotConfiguredAnAutoloader()
     {
-        $this->filesystem->remove($this->workingDirectory . '/layouts/autoload.php');
+        $this->filesystem->remove($this->workingDirectory . '/vendor/autoload.php');
     }
 }
