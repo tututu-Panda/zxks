@@ -47,7 +47,7 @@ trait AuthenticatesUsers
 
         $credentials = $this->getCredentials($request);
 
-        if (Auth::attempt($credentials, $request->has('remember'))) {
+        if (Auth::user()->attempt($credentials, $request->has('remember'))) {
             return $this->handleUserWasAuthenticated($request, $throttles);
         }
 

@@ -10,9 +10,9 @@ return [
             'model'  => App\Models\Sysuser::class,
             'table'  => 'sysusers'
         ],
-        'student' => [
+        'user' => [
             'driver' => 'eloquent',
-            'model'  => App\Models\Student::class,
+            'model'  => App\Models\Home\Student::class,
             'table'  => 'students'
         ]
     ],

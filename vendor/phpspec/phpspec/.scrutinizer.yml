@@ -23,4 +23,4 @@ build_failure_conditions:
 filter:
   excluded_paths:
     - docs/*
-    - layouts/*
+    - vendor/*
