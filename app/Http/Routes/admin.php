@@ -22,8 +22,13 @@ Route::group(['middleware'=>'auth','namespace'=>'Admin','prefix'=>'admin'],funct
     Route::get('/logout','LoginController@LogOut');
 //    登录首页显示
     Route::get('/','IndexController@Index');
+
+
 //    个人信息管理
-    Route::get("/sysuser/index",'SysuserController@index');
+    Route::get("/Sysuser/index",'SysuserController@index');
+    Route::post("/Sysuser/upload",'SysuserController@uploadPhoto');
+
+
 //    题库管理
     Route::get("/DataBase/index",'DataBaseController@index');
 //    成绩统计
