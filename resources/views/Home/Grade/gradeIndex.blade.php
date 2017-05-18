@@ -47,7 +47,7 @@
                         <div class="item">
                             <div class="header"><span class="navbar-header">首页</span></div>
                             <div class="menu" >
-                                <a class="item active" href="{!! route('Home.Index.index') !!}"><span class="navbar-item"><i class="icon home"></i>&nbsp;首页</span></a>
+                                <a class="item" href="{!! route('Home.Index.index') !!}"><span class="navbar-item"><i class="icon home"></i>&nbsp;首页</span></a>
                             </div>
                         </div>
                         <div class="item">
@@ -60,7 +60,7 @@
                         <div class="item">
                             <div class="header"><span class="navbar-header">成绩查询</span></div>
                             <div class="menu">
-                                <a class="item" href="{{URl('home/gradeIndex')}}"><span class="navbar-item"><i class="icon wait"></i>&nbsp;成绩查看</span></a>
+                                <a class="item active" href="{{URl('home/gradeIndex')}}"><span class="navbar-item"><i class="icon wait"></i>&nbsp;成绩查看</span></a>
 
                             </div>
                         </div>
