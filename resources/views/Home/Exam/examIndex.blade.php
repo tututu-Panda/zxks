@@ -6,13 +6,6 @@
     .index-body {
         min-height: 85vh;
     }
-
-    .somepanel {
-        float: left;
-        width: 100%;
-        min-height: 85vh;
-        background-color: #f3f3f4;
-    }
     .test {
         float: left;
         width: 100%;
@@ -76,7 +69,7 @@
             {{--右边内容容器--}}
             <div class="thirteen wide column">
                 <div class="somepanel">
-                    <div class="ui stacked segments test-type1" style="margin-left: 2%;margin-top: 3%;">
+                    <div class="ui stacked segments test-type1" style="margin-left: 2%;margin-top: 3%;margin-bottom: 2%">
                         <div class="ui segment">
                             <p>JAVA</p>
                         </div>
@@ -84,110 +77,157 @@
                             <div class="ui cards test-type2">
                                 <div class="card single-test" style="margin: .875em 1.5em;">
                                     <div class="content">
-                                        <div class="header">Elliot Fu</div>
+                                        <div class="header">第一次Java测试</div>
                                         <div class="description">
-                                            Elliot Fu is a film-maker from New York.
+                                            这里是一些介绍
+                                        </div>
+                                        <div class="meta">
+                                            出卷人：张三
+                                        </div>
+                                        <div class="meta">
+                                            考试时间：2017-05-18 09:00
                                         </div>
                                     </div>
                                     <div class="ui bottom attached button start-test">
-                                        <i class="add icon"></i>
-                                        Add Friend
+                                        <i class="write icon"></i>
+                                        开始考试
                                     </div>
                                 </div>
                                 <div class="card single-test" style="margin: .875em 1.5em;">
                                     <div class="content">
-                                        <div class="header">Veronika Ossi</div>
+                                        <div class="header">第一次Java测试</div>
                                         <div class="description">
-                                            Veronika Ossi is a set designer living in New York who enjoys kittens, music, and partying.
+                                            这里是一些介绍
+                                        </div>
+                                        <div class="meta">
+                                            出卷人：张三
+                                        </div>
+                                        <div class="meta">
+                                            考试时间：2017-05-18 09:00
                                         </div>
                                     </div>
-                                    <div class="ui bottom attached button">
-                                        <i class="add icon"></i>
-                                        Add Friend
+                                    <div class="ui bottom attached button start-test">
+                                        <i class="write icon"></i>
+                                        开始考试
                                     </div>
                                 </div>
-                                <div class="card" style="margin: .875em 1.5em;">
+                                <div class="card single-test" style="margin: .875em 1.5em;">
                                     <div class="content">
-                                        <div class="header">Jenny Hess</div>
+                                        <div class="header">第一次Java测试</div>
                                         <div class="description">
-                                            Jenny is a student studying Media Management at the New School
+                                            这里是一些介绍
+                                        </div>
+                                        <div class="meta">
+                                            出卷人：张三
+                                        </div>
+                                        <div class="meta">
+                                            考试时间：2017-05-18 09:00
                                         </div>
                                     </div>
-                                    <div class="ui bottom attached button">
-                                        <i class="add icon"></i>
-                                        Add Friend
+                                    <div class="ui bottom attached button start-test">
+                                        <i class="write icon"></i>
+                                        开始考试
                                     </div>
                                 </div>
-                                <div class="card" style="margin: .875em 1.5em;">
+                                <div class="card single-test" style="margin: .875em 1.5em;">
                                     <div class="content">
-                                        <div class="header">Jenny Hess</div>
+                                        <div class="header">第一次Java测试</div>
                                         <div class="description">
-                                            Jenny is a student studying Media Management at the New School
+                                            这里是一些介绍
+                                        </div>
+                                        <div class="meta">
+                                            出卷人：张三
+                                        </div>
+                                        <div class="meta">
+                                            考试时间：2017-05-18 09:00
                                         </div>
                                     </div>
-                                    <div class="ui bottom attached button">
-                                        <i class="add icon"></i>
-                                        Add Friend
+                                    <div class="ui bottom attached button start-test">
+                                        <i class="write icon"></i>
+                                        开始考试
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="ui stacked segments test-type1" style="margin-left: 2%;margin-top: 3%;">
+                    <div class="ui stacked segments test-type1" style="margin-left: 2%;margin-top: 3%;margin-bottom: 2%;">
                         <div class="ui segment">
                             <p>C</p>
                         </div>
                         <div class="ui pink segment">
                             <div class="ui cards test-type2">
-                                <div class="card" style="margin: .875em 1.5em;">
+                                <div class="card single-test" style="margin: .875em 1.5em;">
                                     <div class="content">
-                                        <div class="header">Elliot Fu</div>
+                                        <div class="header">第一次Java测试</div>
                                         <div class="description">
-                                            Elliot Fu is a film-maker from New York.
+                                            这里是一些介绍
+                                        </div>
+                                        <div class="meta">
+                                            出卷人：张三
+                                        </div>
+                                        <div class="meta">
+                                            考试时间：2017-05-18 09:00
                                         </div>
                                     </div>
-                                    <div class="ui bottom attached button">
-                                        <i class="add icon"></i>
-                                        Add Friend
+                                    <div class="ui bottom attached button start-test">
+                                        <i class="write icon"></i>
+                                        开始考试
                                     </div>
                                 </div>
-                                <div class="card" style="margin: .875em 1.5em;">
+                                <div class="card single-test" style="margin: .875em 1.5em;">
                                     <div class="content">
-                                        <div class="header">Veronika Ossi</div>
+                                        <div class="header">第一次Java测试</div>
                                         <div class="description">
-                                            Veronika Ossi is a set designer living in New York who enjoys kittens, music, and partying.
+                                            这里是一些介绍
+                                        </div>
+                                        <div class="meta">
+                                            出卷人：张三
+                                        </div>
+                                        <div class="meta">
+                                            考试时间：2017-05-18 09:00
                                         </div>
                                     </div>
-                                    <div class="ui bottom attached button">
-                                        <i class="add icon"></i>
-                                        Add Friend
+                                    <div class="ui bottom attached button start-test">
+                                        <i class="write icon"></i>
+                                        开始考试
                                     </div>
                                 </div>
-                                <div class="card" style="margin: .875em 1.5em;">
+                                <div class="card single-test" style="margin: .875em 1.5em;">
                                     <div class="content">
-                                        <div class="header">Jenny Hess</div>
+                                        <div class="header">第一次Java测试</div>
                                         <div class="description">
-                                            Jenny is a student studying Media Management at the New School
+                                            这里是一些介绍
+                                        </div>
+                                        <div class="meta">
+                                            出卷人：张三
+                                        </div>
+                                        <div class="meta">
+                                            考试时间：2017-05-18 09:00
                                         </div>
                                     </div>
-                                    <div class="ui bottom attached button">
-                                        <i class="add icon"></i>
-                                        Add Friend
+                                    <div class="ui bottom attached button start-test">
+                                        <i class="write icon"></i>
+                                        开始考试
                                     </div>
                                 </div>
-                                <div class="card" style="margin: .875em 1.5em;">
+                                <div class="card single-test" style="margin: .875em 1.5em;">
                                     <div class="content">
-                                        <div class="header">Jenny Hess</div>
+                                        <div class="header">第一次Java测试</div>
                                         <div class="description">
-                                            Jenny is a student studying Media Management at the New School
+                                            这里是一些介绍
+                                        </div>
+                                        <div class="meta">
+                                            出卷人：张三
+                                        </div>
+                                        <div class="meta">
+                                            考试时间：2017-05-18 09:00
                                         </div>
                                     </div>
-                                    <div class="ui bottom attached button">
-                                        <i class="add icon"></i>
-                                        Add Friend
+                                    <div class="ui bottom attached button start-test">
+                                        <i class="write icon"></i>
+                                        开始考试
                                     </div>
                                 </div>
-                            </div>
                         </div>
                     </div>
 

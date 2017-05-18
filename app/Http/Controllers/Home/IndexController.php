@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
+use App\Models\Home\Student;
+use DB;
 class IndexController extends Controller
 {
 
@@ -26,7 +28,13 @@ class IndexController extends Controller
         return view('Home.Index.index');
     }
     public function personInfo() {
-        return view('Home.Index.personInfo');
+        $stu_account = session('home_account');
+        $info = Student::where('account',$stu_account)->first()->toArray();
+        //$info2 = Student::where('account',$stu_account)->get()->toArray();
+        //$info = DB::table('students')->where('account',$stu_account)->get();
+        //p($info);die;
+        //p($info['photo']);die;
+        return view('Home.Index.personInfo',['info' => $info]);
     }
     public function modifyPsw() {
         return view('Home.Index.modifyPsw');

@@ -1,16 +1,12 @@
 @extends('Home.layouts.layout')
 @section('title')
     <title>Online exam在线考试系统</title>
+    <link rel="stylesheet" href="{{ URL::asset('static/jsbars/uploadify.css') }}">
+    <link rel="stylesheet" href="{{ URL::asset('static/layui/css/layui.css') }}">
 @endsection
 <style>
     .index-body {
-        min-height: 85vh;
-    }
-    .somepanel {
-        float: left;
-        width: 100%;
-        min-height: 85vh;
-        background-color: #f3f3f4;
+        min-height: 90vh;
     }
     .info-panel {
         height: 53%;
@@ -20,7 +16,7 @@
     .info-tab .head-img {
         float: left;
         display: block;
-        clear: both;
+
     }
     .info-tab .other-info {
         float: left;
@@ -36,6 +32,7 @@
     .info-tab {
         width: 97%;
     }
+
     .other-info {
         width:80%;
     }
@@ -47,8 +44,45 @@
     .info-font {
         color: #9F9F9F;
     }
+    .uploadhead {
+        cursor: pointer;
+    }
+    .modify-btn {
+        margin-top: 80px;
+        margin-left: 20px;
+    }
+    /*.upload {*/
+        /*position: relative;*/
+        /*display: inline-block;*/
+        /*background: #D0EEFF;*/
+        /*border: 1px solid #99D3F5;*/
+        /*border-radius: 4px;*/
+        /*padding: 4px 12px;*/
+        /*overflow: hidden;*/
+        /*color: #1E88C7;*/
+        /*text-decoration: none;*/
+        /*text-indent: 0;*/
+        /*line-height: 20px;*/
+        /*cursor: pointer;*/
+    /*}*/
+    /*.upload input {*/
+        /*position: absolute;*/
+        /*overflow: hidden;*/
+        /*right: 0;*/
+        /*top: 0;*/
+        /*opacity: 0;*/
+        /*cursor: pointer;*/
+    /*}*/
+    /*.upload:hover {*/
+        /*background: #AADFFD;*/
+        /*border-color: #78C3F3;*/
+        /*color: #004974;*/
+        /*text-decoration: none;*/
+
+    /*}*/
 </style>
 @section('content')
+
     <div class="index-body">
         <div class="ui grid">
             <div class="three wide column">
@@ -90,20 +124,43 @@
             </div>
             <div class="thirteen wide column">
                 <div class="somepanel">
-                    <div class="ui top attached tabular menu info-tab" style="margin-top: 3%;margin-left: 2%;width: 97%;">
+                    <div class="ui top attached tabular menu info-tab" style="margin-top: 2%;margin-left: 2%;width: 97%;">
                         <a class="item active" data-tab="one">
                             基本资料
                         </a>
                     </div>
-                    <div class="ui bottom attached segment info-tab" style="margin-left: 2%;width: 97%;" data-tab="one">
+                    <div class="ui bottom attached segment info-tab" style="margin-left: 2%;width: 97%;margin-bottom: 2%" data-tab="one">
                         <div class="info-panel">
-                            <div class="head-img">
-                                <img src="{{ URL::asset('static/img/default1.jpg') }}" style="height:100px;width: 100px; border-radius: 50%;">
-                            </div>
+                            <form method="post" enctype="multipart/form-data">
+                                <input type="hidden" value="1" name="id">
+                                <input type="hidden" name="_token" value="{{csrf_token()}}"/>
+                                <div class="head-img">
+                                    <?php $headimg = "static/img/default1.jpg"; ?>
+                                    @if(empty($info['photo']))
+                                            <?php $headimg = asset('static/img/default1.jpg'); ?>
+                                        @else
+                                            <?php $headimg = $info['photo']; ?>
+                                    @endif
+                                    {{--@if(empty($info->photo))--}}
+                                        {{--<img src="{{ URL::asset('static/img/default1.jpg') }}" style="height:120px;width: 120px; border-radius: 50%;">--}}
+                                        {{--@else--}}
+                                        <img src="{{ $headimg }}" id="newImg" style="height:120px;width: 120px; border-radius: 50%;">
+                                    {{--@endif--}}
+                                    <div class="uploadhead" style="padding-top: 30px;">
+                                        <a class="upload">
+                                             <input id="fileupload" type="file" name="headupload" multiple>
+                                        </a>
+
+                                    </div>
+
+
+                                </div>
+                            </form>
+
                             <div class="other-info">
                                 <div class="ui grid">
                                     <div class="five wide column">
-                                        <div class="detail-info"><span class="info-font"><i class="icon user"></i>账号：</span>1313465</div>
+                                        <div class="detail-info"><span class="info-font"><i class="icon user"></i>账号：</span>{{ $info['account'] }}</div>
                                     </div>
                                     <div class="five wide column">
                                         <div class="detail-info"><span class="info-font"><i class="icon spy"></i>姓名：</span>1313465</div>
@@ -124,8 +181,7 @@
                                         <div class="detail-info"><span class="info-font"><i class="icon add To Calendar"></i>注册时间：</span></div>
                                     </div>
                                 </div>
-
-
+                                <div class="modify-btn"><button class="ui button" id="modify">编辑资料</button></div>
                             </div>
                         </div>
 
@@ -135,16 +191,78 @@
 
 
             </div>
-
-
+        </div>
+        {{--这里是修改资料的表单，默认为隐藏，点击按钮时激活--}}
+        <div class="modify-form" style="display: none;margin-top: 10px;">
+            <form class="layui-form">
+                <div class="layui-form-item">
+                    <label class="layui-form-label">姓名：</label>
+                    <div class="layui-input-block" style="width:280px;">
+                        <input type="text" name="account" autocomplete="off" placeholder="请输入账号" class="layui-input" style="width:80%;" value="">
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">email：</label>
+                    <div class="layui-input-block" style="width:280px;">
+                        <input type="text" name="account" autocomplete="off" placeholder="请输入账号" class="layui-input" style="width:80%;" value="">
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">性别：</label>
+                    <div class="layui-input-block">
+                        <input type="radio" name="sex" value="1" title="男" checked>
+                        <input type="radio" name="sex" value="0" title="女" >
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">手机号码：</label>
+                    <div class="layui-input-block" style="width:280px;">
+                        <input type="text" name="account" autocomplete="off" placeholder="请输入账号" class="layui-input" style="width:80%;" value="">
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <div class="layui-input-block">
+                        <button class="layui-btn" lay-submit="" lay-filter="addsave">保存</button>
+                        <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+                    </div>
+                </div>
+            </form>
         </div>
     @endsection
         @section('script')
             @parent
-            <script type="text/javascript" src=""></script>
+            <script src="{{ URL::asset('static/jsbars/jquery.uploadify.min.js')}}"></script>
+            <script src="{{ URL::asset('static/layui/layui.js') }}"></script>
+            <script src="{{ URL::asset('static/js/home_personInfo.js') }}"></script>
+            {{--<script type="text/javascript" src="{{ URL::asset('static/layui/layui.js')}}"></script>--}}
+
             <script type="text/javascript">
                 $(document).ready(function() {
                     $('.menu.item').tab();
+
+                $('#fileupload').uploadify({
+                    'swf':'{{ URL::asset('static/jsbars/uploadify.swf') }}',
+                    'uploader' : 'uploadHeadImg',
+                    formData:{
+                        '_token' : "{{csrf_token()}}"
+                    },
+                    'cancelImg': '{{ URL::asset('static/jsbars/uploadify-cancel.png') }}',
+                    'fileTypeExts': '*.gif;*.jpg;*.png',
+                    'buttonText': '更换头像',
+                    'height': 35,
+                    'dataType':'json',
+                    'queueSizeLimit': 1,
+                    'onFallback': function () {
+                        alert("您未安装FLASH控件，无法上传图片！请安装FLASH控件后再试。");
+                    },
+                    'onUploadSuccess':function(file, data, response){
+                        var dataObj=eval("("+data+")"); //转换为json对象
+                        $('#newImg').attr("src",dataObj.imgurl);
+                    }
+
+                });
+
                 });
             </script>
+
         @endsection

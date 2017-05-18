@@ -81,8 +81,7 @@
                             <p>成绩分析</p>
                         </div>
                         <div class="ui teal segment">
-                            结合echarts表格
-
+                            <div class="echarts1" id="echarts-test" style="height:300px;"></div>
                         </div>
                     </div>
                     <div class="ui stacked segments test-type1" style="margin-left: 2%;margin-top: 3%;">
@@ -90,7 +89,7 @@
                             <p>每次成绩</p>
                         </div>
                         <div class="ui pink segment">
-                            面板展示每次成绩，包括难度，分数
+                            <div class="echarts1" id="echarts-test2" style="height:300px;"></div>
                         </div>
                     </div>
                 </div>
@@ -101,6 +100,8 @@
 
         @endsection
         @section('script')
+            <script src="{{ URL::asset('static/jsbars/echarts.min.js') }}"></script>
+            <script src="{{ URL::asset('static/js/home_gradeIndex.js') }}"></script>
             @parent
             <script type="text/javascript">
                 $(document).ready(function() {

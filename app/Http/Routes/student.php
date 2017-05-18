@@ -20,6 +20,7 @@ Route::group(['middleware'=>'home','namespace'=>'Home','prefix'=>'home'],functio
     Route::get('/examIndex',['as' => 'Home.Exam.examIndex', 'uses' => 'ExamController@examIndex']);
     Route::get('/gradeIndex','GradeController@gradeIndex');
     Route::get('/examTest','ExamController@examTest');
+    Route::any('/uploadHeadImg','PersonInfoController@uploadHeadImg');
 
 
 //

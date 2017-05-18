@@ -1,0 +1,19 @@
+.main-body {
+    width:60vw;
+    margin: auto;
+    height:95vh;
+    border: 1px solid #9c6f04;
+    border-radius: 5px;
+}
+.title {
+    width: 100%;
+}
+.titleH1 {
+    padding-left: 40%;
+    font-size: 22px;
+    font-weight: 400;
+}
+.radio-style {
+   margin-left:30px;
+    float: left;
+}
