@@ -24,8 +24,8 @@
             <ul class="layui-nav admin-header-item">
                 <li class="layui-nav-item">
                     <a href="javascript:;" class="admin-header-user">
-                        <img src="{{URL::asset('static/img/default.jpg')}}" />
-                        <span>{{$name}}</span>
+                        <img src="{{URL::asset($photo)}}" />
+                        <span>{{$account}}</span>
                     </a>
                     <dl class="layui-nav-child">
                         <dd>

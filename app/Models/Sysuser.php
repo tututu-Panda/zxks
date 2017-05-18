@@ -20,14 +20,14 @@ class Sysuser extends Model  implements AuthenticatableContract, CanResetPasswor
      *
      * @var array
      */
-    protected $fillable = ['account', 'password','name','phone','photo','sex','email'];
+    protected $fillable = ['id','account', 'password','name','phone','photo','sex','email'];
 
     /**
      * The attributes excluded from the model's JSON form.
      *
      * @var array
      */
-    protected $hidden = ['password'];
+
 
 }
 

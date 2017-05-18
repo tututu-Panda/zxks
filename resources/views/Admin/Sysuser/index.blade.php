@@ -12,11 +12,14 @@
         <form class="layui-form">
             <input type="hidden" name="_token" value="{{ csrf_token() }}">
 
+            <input type="hidden" id="id"  name="id" value="{{$user['id']}}" />
+
         <div>
             <div class="item" style="margin-left: 125px; margin-top:100px;margin-bottom: 100px; ">
                 <div class="layui-form-item">
                     <div class="layui-input-block">
-                        <img id="photo" src="{{asset($user['photo'])}}" alt="">
+                        <img id="photo" src="{{asset($user['photo'])}}">
+                        <input type="hidden" id="changephoto" name="photo" alue="{{asset($user['photo'])}}">
                     </div>
                     <div class="layui-input-block" align="center" style="margin-top: 15px;">
                         <input type="file" name="photo" class="layui-upload-file "  />
@@ -31,7 +34,7 @@
                         <label class="beg-login-icon" style="padding: 0px">
                             <i class="layui-icon">&#xe612;</i>
                         </label>
-                        <input type="text" name="account" disabled   autocomplete="off" class="layui-input" value='{{$user['account']}}'>
+                        <input type="text" name="account" readOnly="true"  autocomplete="off" class="layui-input" value='{{$user['account']}}'>
                     </div>
                 </div>
             </div>
@@ -43,9 +46,9 @@
                         <label class="beg-login-icon" style="padding: 0px">
                             <i class="layui-icon">&#xe642;</i>
                         </label>
-                        <input type="password" maxlength="10" name="password" disabled autocomplete="off" class="layui-input" value="xxxxxxxxxx">
+                        <input type="password" name="password" disabled autocomplete="off" class="layui-input" value="******">
                     </div>
-                    <a class="changepass" style="padding: 15px; padding-left: 20px;" href="#">修改密码</a>
+                    <a class="changepass" style="padding: 15px; padding-left: 20px;" href="javascript:;">修改密码</a>
                 </div>
             </div>
 
@@ -93,9 +96,9 @@
                         <label class="beg-login-icon" style="padding: 0px">
                             <i class="fa fa-venus-mars" aria-hidden="true"></i>
                         </label>
-                        <input type="radio" name="sex" value="男" title="男" @if($user['sex'] == 1) checked  @endif>
+                        <input type="radio" name="sex" value="1" title="男" @if($user['sex'] == 1) checked  @endif>
 
-                        <input type="radio" name="sex" value="女" title="女" @if($user['sex'] == 0) checked  @endif>
+                        <input type="radio" name="sex" value="0" title="女" @if($user['sex'] == 0) checked  @endif>
                     </div>
                 </div>
             </div>
@@ -114,6 +117,8 @@
 @section('js')
     <script>
         var upload="{{url('admin/Sysuser/upload')}}";
+        var updateuser="{{url('admin/Sysuser/update')}}";
+        var chanpass="{{url('admin/Sysuser/chanpass')}}";
 
     </script>
     <script src="{{asset("static/js/Sysuser.js")}}"></script>

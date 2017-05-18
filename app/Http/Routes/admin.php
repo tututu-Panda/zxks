@@ -27,6 +27,12 @@ Route::group(['middleware'=>'auth','namespace'=>'Admin','prefix'=>'admin'],funct
 //    个人信息管理
     Route::get("/Sysuser/index",'SysuserController@index');
     Route::post("/Sysuser/upload",'SysuserController@uploadPhoto');
+    Route::post("/Sysuser/update",'SysuserController@updateSysuer');
+    Route::get("/Sysuser/chanpass/{id}",function ($id){
+        return view('Admin.Sysuser.changepass')->with('id',$id);
+    });
+
+    Route::post("/Sysuser/chanpass",'SysuserController@changepass');
 
 
 //    题库管理

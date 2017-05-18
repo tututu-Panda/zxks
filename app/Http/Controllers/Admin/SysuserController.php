@@ -2,11 +2,15 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Http\Requests\Admin\EditSysuserRequest;
 use App\Models\Sysuser;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Input;
+use Illuminate\Validation\Validator;
 use Intervention\Image\Facades\Image;
 
 
@@ -73,21 +77,81 @@ class SysuserController extends Controller
             );
         }
 
-
-//        // 格式化图片名称
-//        $file_name = $file['tmp_name'];
-//        // 执行move方法
-//        $status = move_uploaded_file($file_name,$destinationPath);
-//
-//        // 修改图片大小
-////        Image::make($destinationPath . $file_name)->fit(200)->save();
-//        if($status) {
-//            $return = array(
-//                'data' => $destinationPath,
-//                'status' => 'success',
-//            );
-//        }
         return response()->json($return);
     }
+
+
+    /**
+     * Created by
+     * Author : pjy
+     * Date : ${DATE}
+     * Time : ${TIME}
+     * 更新用户信息
+     */
+    public function updateSysuer(EditSysuserRequest $request) {
+        $id = Input::get('id');
+        $user = Sysuser::find($id);
+        $status = $user->update($request->all());
+        if($status){
+            $return = array(
+                'data' => '更新成功！',
+                'status' => 'success'
+            );
+        }else {
+            $return = array(
+                'data' => '更新失败！',
+                'status' => false
+            );
+        }
+        return response()->json($return);
+//        var_dump(Input::all());
+//        exit();
+    }
+
+
+    /**
+     * Created by
+     * Author : pjy
+     * Date : ${DATE}
+     * Time : ${TIME}
+     * 修改密码
+     */
+    public function changepass(Request $request) {
+        // 获得id所对应的密码hash值
+        $id = $request->get('id');
+        $hashedPassword = Sysuser::where('id',$id)->select('password')->get()->toArray();
+//        var_dump($hashedPassword);
+//        exit();
+
+        //获得输入框中的密码
+        $password = $request->get('old_pass');
+        if (Hash::check($password, $hashedPassword[0]['password'])) {
+            // 验证成功，修改密码
+            $newpass = $request->get('new_password');
+            $new_hash = Hash::make($newpass);
+            $status = Sysuser::where('id',$id)->update('password',$new_hash);
+            if($status) {
+                $return = array(
+                    'status' => 'success',
+                    'msg' => '更新成功！',
+                );
+            }else{
+                $return = array(
+                    'status' => false,
+                    'msg' => '更新失败！',
+                );
+            }
+        }else {
+            // 验证失败，返回错误
+            $return = array(
+                'status' => false,
+                'msg' => '原密码错误！',
+            );
+        }
+
+        return response()->json($return);
+
+    }
+
 
 }
