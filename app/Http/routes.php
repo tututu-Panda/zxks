@@ -20,3 +20,6 @@ require __DIR__.'/Routes/admin.php';
 require __DIR__.'/Routes/student.php';
 
 
+Route::get("/",function (){
+    return redirect()->route('Home.Index.index');
+});

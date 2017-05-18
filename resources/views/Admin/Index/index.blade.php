@@ -24,8 +24,8 @@
             <ul class="layui-nav admin-header-item">
                 <li class="layui-nav-item">
                     <a href="javascript:;" class="admin-header-user">
-                        <img src="{{URL::asset('static/img/default.jpg')}}" />
-                        <span>{{$name}}</span>
+                        <img src="{{URL::asset($photo)}}" />
+                        <span>{{$account}}</span>
                     </a>
                     <dl class="layui-nav-child">
                         <dd>
@@ -35,7 +35,7 @@
                             <a href="javascript:;"><i class="fa fa-gear" aria-hidden="true"></i> 设置</a>
                         </dd>
                         <dd>
-                            <a href="/admin/logout"><i class="fa fa-sign-out" aria-hidden="true"></i> 注销</a>
+                            <a href="{{url("/admin/logout")}}"><i class="fa fa-sign-out" aria-hidden="true"></i> 注销</a>
                         </dd>
                     </dl>
                 </li>

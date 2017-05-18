@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Models\Sysuser;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -16,8 +17,10 @@ class IndexController extends Controller
      */
     public function index()
     {
-        $name = session('name');
-        return view('Admin/Index/index',compact('name'));
+        $account = session('account');
+        $img = Sysuser::where('account',$account)->select('photo')->get()->toArray();
+        $photo = $img[0]['photo'];
+        return view('Admin/Index/index',compact('account','photo'));
     }
 
 

@@ -25,7 +25,7 @@
                 <li class="layui-nav-item">
                     <a href="javascript:;" class="admin-header-user">
                         <img src="<?php echo e(URL::asset('static/img/default.jpg')); ?>" />
-                        <span>test</span>
+                        <span><?php echo e($name); ?></span>
                     </a>
                     <dl class="layui-nav-child">
                         <dd>

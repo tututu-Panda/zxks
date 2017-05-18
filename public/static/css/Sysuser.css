@@ -1,0 +1,76 @@
+body{
+    color:#797979;
+    padding:0px !important;
+    margin:0px !important;
+    font-size:12px;
+    font-family: "微软雅黑","Microsoft YaHei","Microsoft YaHei UI", "Segoe UI", Arial, Verdana, Sans-Serif, sans-serif;
+    background-color: #ffffff;
+}
+
+div {
+    padding: 5px;
+}
+
+ul li{
+    list-style:none;
+}
+
+img{
+    width: 180px;
+    height: 180px;
+    border-radius:50%;
+}
+
+
+.admin-main{
+    padding: 30px 10px;
+}
+
+.admin-main input {
+    width:250px;
+}
+
+.item {
+    float: left;
+}
+
+.inner-item {
+    display: inline-flex;
+}
+
+.inner-item label {
+    padding: 9px 106px;
+}
+
+.changepass {
+    color:#ccc;
+}
+
+.changepass:hover{
+    color:#797979;
+    text-decoration: underline;
+}
+
+.layui-input {
+    display: inline-flex;
+    padding-left: 25px;
+}
+
+
+.beg-login-icon {
+    position: absolute;
+    color: #cccccc;
+    top: 17px;
+    left: 10px;
+}
+
+
+.disabled input{
+    cursor: not-allowed;
+}
+
+
+
+
+
+

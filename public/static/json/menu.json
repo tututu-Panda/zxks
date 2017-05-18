@@ -1,38 +1,51 @@
 [
   
   {
-    "title": "导入数据",
+    "title": "用户管理",
     "icon": "&#xe609;",
     "spread": false,
     "children": [
       {
-        "title": "数据导入",
-        "icon": "&#xe62f;",
-        "href": "admin/login"
+        "title": "个人信息",
+        "icon": "&#xe612;",
+        "href": "admin/Sysuser/index"
       }
     ]
   },
   {
-    "title": "数据导出",
+    "title": "题库管理",
     "icon": "&#xe622;",
     "spread": false,
     "children": [
       {
-        "title": "导出数据",
-        "icon": "&#xe601;",
-        "href": "Home/Data/DownData"
+        "title": "题库管理",
+        "icon": "&#xe635;",
+        "href": "admin/DataBase/index"
       }
     ]
   },
   {
-    "title": "数据展示",
+
+    "title": "成绩管理",
     "icon": "&#xe63c;",
     "spread": false,
     "children": [
       {
-        "title": "查询数据",
+        "title": "成绩统计",
         "icon": "&#xe615;",
-        "href": "Home/ShowCost/CostList"
+        "href": "admin/Score/index"
+      }
+    ]
+  },
+  {
+    "title": "试卷管理",
+    "icon": "&#xe624;",
+    "spread": false,
+    "children": [
+      {
+        "title": "试卷列表",
+        "icon": "&#xe63c;",
+        "href": "admin/Paper/index"
       }
     ]
   }
