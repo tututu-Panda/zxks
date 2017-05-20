@@ -37,8 +37,16 @@ Route::group(['middleware'=>'auth','namespace'=>'Admin','prefix'=>'admin'],funct
 
 //    题库管理
     Route::get("/DataBase/index",'DataBaseController@index');
+
+
 //    成绩统计
+    // 成绩查询
     Route::get("/Score/index",'ScoreController@index');
+    // 成绩统计
+    Route::get('/Score/total','ScoreController@total');
+
+
+
 //    试卷列表
     Route::get("/Paper/index",'PaperController@index');
 

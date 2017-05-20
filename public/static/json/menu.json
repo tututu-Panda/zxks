@@ -31,9 +31,14 @@
     "spread": false,
     "children": [
       {
-        "title": "成绩统计",
+        "title": "成绩查询",
         "icon": "&#xe615;",
         "href": "admin/Score/index"
+      },
+      {
+        "title": "成绩统计",
+        "icon": "&#xe615;",
+        "href": "admin/Score/total"
       }
     ]
   },

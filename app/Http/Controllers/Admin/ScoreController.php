@@ -15,10 +15,31 @@ use App\Http\Controllers\Controller;
 class ScoreController extends Controller
 {
 
+    /**
+     * Created by
+     * Author : pjy
+     * Date : {$DATE}
+     * Time : {$TIME}
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * 成绩查询
+     */
     public function index()
     {
-        return "<h1>成绩统计</h1>";;
+        return view('Admin.Score.index');
     }
+
+
+    /**
+     * Created by
+     * Author : pjy
+     * Date : {$DATE}
+     * Time : {$TIME}
+     * 成绩统计
+     */
+    public function total() {
+        return view('Admin.Score.total');
+    }
+
 
 
 }

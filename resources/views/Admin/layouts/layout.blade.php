@@ -17,7 +17,6 @@
         @yield('content')
     </div>
     <script src="{{URL::asset('static/layui/layui.js')}}"></script>
-    <script src="{{URL::asset('static/js/index.js')}}"></script>
     @yield('js')
 </body>
 </html>
