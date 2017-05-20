@@ -22,7 +22,7 @@ class PaperController extends Controller
      */
     public function index()
     {
-        return "<h1>试卷列表</h1>";
+        return view('Admin.Paper.index');
     }
 
 
