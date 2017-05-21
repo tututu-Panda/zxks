@@ -14,5 +14,6 @@ class VerifyCsrfToken extends BaseVerifier
     protected $except = [
         'admin/Sysuser/upload',
         'admin/Sysuser/chanpass',
+        'admin/Score/getpaper',
     ];
 }
