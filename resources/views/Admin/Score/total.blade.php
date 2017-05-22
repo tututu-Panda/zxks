@@ -45,6 +45,11 @@
                 <button  class="layui-btn layui-btn-small" lay-submit="" lay-filter="search" id="search" >
                     <i class="layui-icon">&#xe615;</i> 搜索
                 </button >
+                @if($subject != "")
+                <button  class="layui-btn layui-btn-small" id="all" onclick="window.location.href = listurl; return false;" >
+                    <i class="layui-icon">&#xe615;</i> 查看全部
+                </button >
+                @endif
                 <button type="reset" class="layui-btn layui-btn-small layui-btn-warm"> <i class="fa fa-eercast" aria-hidden="true"></i> 重置 </button>
 
 
@@ -79,7 +84,7 @@
 
 
         var paperurl = "{{url('admin/Score/getpaper')}}";
-        var listurl = "{{'admin/Score/total'}}";
+        var listurl = "{{url('admin/Score/total')}}";
 
 
     </script>
