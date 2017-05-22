@@ -67,7 +67,6 @@ layui.config({
     // 搜索事件
     form.on('submit(search)',function(){
         $.get(listurl,$('form').serialize(),function(data){
-            alert(data);
         });
     });
 

@@ -155,8 +155,26 @@ class ScoreController extends Controller
      * Time : {$TIME}
      * 成绩统计
      */
-    public function total() {
-        return view('Admin.Score.total');
+    public function total(Request $request) {
+        $subject = $request->get('subject',"");             //获得请求学科
+        $testpaper = $request->get('testpaper','');         //获得请求试卷
+        if($testpaper !=""){
+            $allpaper = TestPaper::where('type',$subject)->get()->toArray();
+        }else{
+            $allpaper = TestPaper::all()->toArray();
+        }
+
+        // 得到所有及格率信息
+        $score = new Score();
+        $circle = $score->getAllScoreRate($testpaper);
+
+        // 得到所有分数信息
+        $pillar = $score->getAllScore($testpaper);
+
+//        var_dump($pillar);
+//        exit();
+
+        return view('Admin.Score.total',compact('subject','testpaper','allpaper','circle','pillar'));
     }
 
 
