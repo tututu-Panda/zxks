@@ -46,6 +46,8 @@ Route::group(['middleware'=>'auth','namespace'=>'Admin','prefix'=>'admin'],funct
     Route::post("/Score/getpaper",'ScoreController@getPaper');
     // 成绩统计
     Route::get('/Score/total','ScoreController@total');
+    // 成绩详细信息
+    Route::get('/Score/details','ScoreController@details');
 
 
 

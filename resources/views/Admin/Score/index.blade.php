@@ -32,7 +32,7 @@
                     <div class="layui-form-pane courseList">
                         <label class="layui-form-label" style="padding: 4px 1px;">筛选学科</label>
                         <div class="layui-input-inline">
-                            <select name="subject" lay-verify="required" lay-filter="subject">
+                            <select name="subject" lay-verify="required"  lay-filter="subject">
                                 <option value="">直接选择或搜索</option>
 
                                     <option value="1" @if($subject == 1) selected @endif>java</option>
@@ -81,6 +81,7 @@
             <div class="layui-field-box">
                 <table class="site-table table-hover">
                     <thead>
+                    @if($students != "")
                     <tr>
                         <th>学科</th>
                         <th>试卷名称</th>
@@ -91,7 +92,6 @@
                     </tr>
                     </thead>
                     <tbody>
-                    @if($students != "")
                     @foreach($students as$student)
                         @foreach($student as $stu)
                         <tr>
@@ -106,12 +106,14 @@
 
                             <td>
                                 {{--<a href="javascript:;" data-id="{$vo.id}" class="layui-btn layui-btn-mini edit">编辑</a>--}}
-                                <a href="javascript:;" data-id="{$vo.id}" class="layui-btn layui-btn-mini layui-btn-normal">详情</a>
+                                <a href="javascript:;" data-id="{{$stu['id']}}" data-value="{{$stu['testpaper_id']}}" class="layui-btn layui-btn-mini layui-btn-normal  details">详情</a>
                             {{--<a href="javascript:;" data-id="{$vo.id}" data-opt="del" class="layui-btn layui-btn-danger layui-btn-mini del">删除</a>--}}
                             </td>
                         </tr>
                             @endforeach
                     @endforeach
+                    @else
+                        <h2>不存在该查询数据！</h2>
                         @endif
                     </tbody>
                 </table>
@@ -127,5 +129,6 @@
     <script>
         var paperurl = "{{url('admin/Score/getpaper')}}";
         var listurl = "{{url('admin/Score/index')}}";
+        var details = "{{url('admin/Score/details')}}";
     </script>
     @endsection

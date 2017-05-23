@@ -47,7 +47,8 @@
                 </button >
                 @if($subject != "")
                 <button  class="layui-btn layui-btn-small" id="all" onclick="window.location.href = listurl; return false;" >
-                    <i class="layui-icon">&#xe615;</i> 查看全部
+                    <i class="fa fa-bar-chart" aria-hidden="true"></i>
+                    查看全部
                 </button >
                 @endif
                 <button type="reset" class="layui-btn layui-btn-small layui-btn-warm"> <i class="fa fa-eercast" aria-hidden="true"></i> 重置 </button>
@@ -69,7 +70,8 @@
 
 @section('js')
     <script>
-
+        // 获得试卷名称
+        var name = "{{$name}}";
 
         // 获得圆形成绩
         var unqulify = "{{$circle['unqulify']}}";
@@ -96,7 +98,7 @@
         // 指定图表的配置项和数据
         var option = {
             title: {
-                text: '试卷总体分析'
+                text: name+'总体分析'
             },
 //            tooltip: {},
             tooltip : {
@@ -143,7 +145,7 @@
         var circle = echarts.init(document.getElementById('java_circle'),'macarons');
         option = {
             title: {
-                text: "试卷及格情况分析",
+                text: name+"及格情况分析",
                 textStyle: {
                     fontWeight: 'bolder',              //标题颜色
                     color: '#000'

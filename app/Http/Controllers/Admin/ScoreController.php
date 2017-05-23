@@ -38,7 +38,7 @@ class ScoreController extends Controller
 
             // 1. 获得一张试卷
             $paper = TestPaper::all()->take(1)->toArray();
-            $allpaper = TestPaper::all()->toArray();
+            $allpaper = TestPaper::where('type',1)->get()->toArray();
             // 2. 得到所有学生得分
             $students = "";
             foreach ($paper as $key => $value) {
@@ -59,6 +59,8 @@ class ScoreController extends Controller
                     $students[$key][$key1]['type'] = $type[0]['type'];                                  //获得id信息
                 }
             }
+            $subject=1;
+            $testpaper=1;
         }
 
 //        $requestPage = Request::get('requestPage','');     //获得请求页码
@@ -103,23 +105,27 @@ class ScoreController extends Controller
 
         else{
             $student = Student::where('name','like',"%".$keywords."%")->orwhere('account','like',"%".$keywords."%")->get()->toArray();
-            $score = Score::where(array('account'=>$student[0]['id'],'testpaper_id'=>$testpaper))->orderBy('testpaper_id')->get()->toArray();
             $allpaper = TestPaper::all()->toArray();
             $students = "";
-            foreach ($score as $key=>$value){
-                $paper_name = TestPaper::select('name','type')->where('id', $value['testpaper_id'])->get()->toArray(); //获得试卷名称
-                $students[0][$key]['account'] = $student[0]['account'];
-                $students[0][$key]['testpaper_id'] = $value['testpaper_id'];
-                $students[0][$key]['score'] = $value['score'];
-                $students[0][$key]['testpaper_name'] = $paper_name[0]['name'];
-                $students[0][$key]['name'] = $student[0]['name'];
-                $students[0][$key]['id'] = $student[0]['id'];
-                $students[0][$key]['type'] = $paper_name[0]['type'];
+
+            if(empty($student)){
+            }else{
+                $score = Score::where(array('account'=>$student[0]['id'],'testpaper_id'=>$testpaper))->orderBy('testpaper_id')->get()->toArray();
+                foreach ($score as $key=>$value){
+                    $paper_name = TestPaper::select('name','type')->where('id', $value['testpaper_id'])->get()->toArray(); //获得试卷名称
+                    $students[0][$key]['account'] = $student[0]['account'];
+                    $students[0][$key]['testpaper_id'] = $value['testpaper_id'];
+                    $students[0][$key]['score'] = $value['score'];
+                    $students[0][$key]['testpaper_name'] = $paper_name[0]['name'];
+                    $students[0][$key]['name'] = $student[0]['name'];
+                    $students[0][$key]['id'] = $student[0]['id'];
+                    $students[0][$key]['type'] = $paper_name[0]['type'];
+                }
             }
         }
 //        var_dump($students);
 //        exit();
-        return view('Admin.Score.index',compact('students','paper','allpaper','subject','testpaper','keywords'));
+        return view('Admin.Score.index',compact('students','allpaper','subject','testpaper','keywords'));
 
     }
 
@@ -158,25 +164,43 @@ class ScoreController extends Controller
     public function total(Request $request) {
         $subject = $request->get('subject',"");             //获得请求学科
         $testpaper = $request->get('testpaper','');         //获得请求试卷
+        $name="";
         if($testpaper !=""){
             $allpaper = TestPaper::where('type',$subject)->get()->toArray();
+            $name = TestPaper::where('id',$testpaper)->select(['name'])->get()->toArray();
+            $name = $name[0]['name'];
         }else{
             $allpaper = TestPaper::all()->toArray();
         }
 
         // 得到所有及格率信息
         $score = new Score();
+
         $circle = $score->getAllScoreRate($testpaper);
 
         // 得到所有分数信息
         $pillar = $score->getAllScore($testpaper);
 
-//        var_dump($pillar);
+//        var_dump($name);
 //        exit();
+        if($name==""){
+            $name='所有试卷';
+        }
 
-        return view('Admin.Score.total',compact('subject','testpaper','allpaper','circle','pillar'));
+        return view('Admin.Score.total',compact('subject','testpaper','allpaper','circle','pillar','name'));
     }
 
+
+    /**
+     * Created by
+     * Author : pjy
+     * Date : {$DATE}
+     * Time : {$TIME}
+     * 学生详细信息
+     */
+    public function details(){
+        return view('Admin.Score.details');
+    }
 
 
 }

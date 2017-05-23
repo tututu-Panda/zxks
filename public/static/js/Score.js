@@ -71,6 +71,26 @@ layui.config({
     });
 
 
+    $(".details").on('click',function(){
+        var account_id = $(this).data('id');          // 学生id
+        var testpaper_id = $(this).data('value');      // 试卷id
+        var index = layer.open({
+            type:2,
+            title:['详细信息','text-align:center;'],
+            area:['1100px','500px'],
+            resize:false,
+            maxmin:true,
+            content:details+"?testpape_id="+testpaper_id+"&account_id="+account_id,
+            end:function(){
+                location.reload();
+            }
+        });
+        layer.full(index);
+    });
+
+
+
+
 
 
 

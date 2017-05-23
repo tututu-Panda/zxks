@@ -37,7 +37,7 @@
       },
       {
         "title": "成绩统计",
-        "icon": "&#xe615;",
+        "icon": "&#xe62c;",
         "href": "admin/Score/total"
       }
     ]
