@@ -11,68 +11,47 @@
 @section('content')
     <div class="admin-main">
         <blockquote class="layui-elem-quote">
-            <form class="layui-form" action="" method="post">
-
+            <form class="layui-form" >
+                <input type="hidden" name="_token" value="{{ csrf_token() }}">
                 <div class=" layui-input-block" style="display: inline-block; margin-left: 5px; vertical-align: bottom;">
                     <div class="layui-form-pane courseList">
                         <label class="layui-form-label" style="padding: 4px 1px;">筛选学科</label>
                         <div class="layui-input-inline">
-                            <select name="select_subject" lay-verify="required" lay-filter="subject">
+                            <select name="subject" lay-verify="required" lay-filter="subject">
                                 <option value="">直接选择或搜索</option>
-                                <option value="1">1</option>
-                                <option value="2">2</option>
-                                <option value="3">3</option>
-                            </select>
-                        </div>
-                    </div>
-                </div>
-
-                <div class=" layui-input-block" style="display: inline-block; margin-left: 5px; vertical-align: bottom;">
-                    <div class="layui-form-pane courseList">
-                        <label class="layui-form-label" style="padding: 4px 1px;">筛选年级</label>
-                        <div class="layui-input-inline">
-                            <select name="select_grade" lay-search="" lay-verify="" lay-filter="grade">
-                                <option value="" selected="">直接选择或搜索</option>
-                                <option value="1">1</option>
-                                <option value="2">2</option>
-                                <option value="3">3</option>
+                                <option value="1" @if($subject == 1) selected @endif>java</option>
+                                <option value="2" @if($subject == 2) selected @endif >c语言</option>
                             </select>
                         </div>
                     </div>
                 </div>
 
 
-                <div class=" layui-input-block" style="display: inline-block; margin-left: 5px; vertical-align: bottom;">
-                    <div class="layui-form-pane courseList">
-                        <label class="layui-form-label" style="padding: 4px 1px;">筛选班级</label>
-                        <div class="layui-input-inline">
-                            <select name="select_class" class="select_class" lay-verify="" lay-search="" lay-filter="class">
-                                <option value="" >直接选择或搜索</option>
-                                <option value="1">1</option>
-                                <option value="2">2</option>
-                                <option value="3">3</option>
-                            </select>
-                        </div>
-                    </div>
-                </div>
 
                 <div class=" layui-input-block" style="display: inline-block; margin-left: 5px; vertical-align: bottom;">
                     <div class="layui-form-pane courseList">
                         <label class="layui-form-label" style="padding: 4px 1px;">试卷名称</label>
                         <div class="layui-input-inline">
-                            <select name="select_class" class="select_class" lay-verify="" lay-search="" lay-filter="class">
+                            <select name="testpaper" class="select_paper" required lay-filter="paper">
                                 <option value="" >直接选择或搜索</option>
-                                <option value="1">1</option>
-                                <option value="2">2</option>
-                                <option value="3">3</option>
+                                @foreach($allpaper as $item)
+                                    <option value="{{$item['id']}}" @if($testpaper == $item['id']) selected @endif>{{$item['name']}}</option>
+                                @endforeach
                             </select>
                         </div>
                     </div>
                 </div>
 
-                <button  class="layui-btn layui-btn-small" lay-submit="" lay-filter="submit2" id="search" >
+                <button  class="layui-btn layui-btn-small" lay-submit="" lay-filter="search" id="search" >
                     <i class="layui-icon">&#xe615;</i> 搜索
                 </button >
+                @if($subject != "")
+                <button  class="layui-btn layui-btn-small" id="all" onclick="window.location.href = listurl; return false;" >
+                    <i class="fa fa-bar-chart" aria-hidden="true"></i>
+                    查看全部
+                </button >
+                @endif
+                <button type="reset" class="layui-btn layui-btn-small layui-btn-warm"> <i class="fa fa-eercast" aria-hidden="true"></i> 重置 </button>
 
 
             </form>
@@ -90,6 +69,27 @@
     @endsection
 
 @section('js')
+    <script>
+        // 获得试卷名称
+        var name = "{{$name}}";
+
+        // 获得圆形成绩
+        var unqulify = "{{$circle['unqulify']}}";
+        var qulify = "{{$circle['qulify']}}";
+        var full = "{{$circle['full']}}";
+
+        // 循环获得柱形成绩
+        var number=new Array();
+        @for($i = 0; $i <= 100; $i = $i + 10)
+            number["{{$i}}"] ="{{$pillar[$i]}}";
+        @endfor
+
+
+        var paperurl = "{{url('admin/Score/getpaper')}}";
+        var listurl = "{{url('admin/Score/total')}}";
+
+
+    </script>
     <script src="{{asset("static/js/total.js")}}"></script>
     <script src="{{asset("static/js/echarts.js")}}"></script>
     <script src="{{asset("static/js/macarons.js")}}"></script>
@@ -98,7 +98,7 @@
         // 指定图表的配置项和数据
         var option = {
             title: {
-                text: '试卷总体分析'
+                text: name+'总体分析'
             },
 //            tooltip: {},
             tooltip : {
@@ -117,7 +117,11 @@
             series: [{
                 name: '人数',
                 type: 'bar',
-                data: [5, 20, 36, 10, 10, 20,54,14,12,2]
+                data: [number[10], number[20],
+                    number[30], number[40],
+                    number[50],number[60],
+                    number[70],number[80],
+                    number[90],number[100]]
             }],
             itemStyle: {
                 normal: {
@@ -141,7 +145,7 @@
         var circle = echarts.init(document.getElementById('java_circle'),'macarons');
         option = {
             title: {
-                text: "试卷及格情况分析",
+                text: name+"及格情况分析",
                 textStyle: {
                     fontWeight: 'bolder',              //标题颜色
                     color: '#000'
@@ -204,13 +208,13 @@
                     }
                 },
                 data: [{
-                    value: 305,
+                    value: full,
                     name: "满分"
                 }, {
-                    value: 234,
+                    value: qulify,
                     name: "及格"
                 }, {
-                    value: 145,
+                    value: unqulify,
                     name: "不及格"
                 }]
             }]
