@@ -26,4 +26,73 @@ class TestPaper extends Model
         return $this->hasMany('App\Models\Score','testpaper_id');
     }
 
+
+    /**
+     * Created by
+     * Author : pjy
+     * Date : {$DATE}
+     * Time : {$TIME}
+     * 启用试卷
+     */
+    public function useit($id){
+        $result = $this->where('id',$id)->select('is_use')->get()->toArray();
+        $status = $result[0]['is_use'];
+        $return = array();
+        if($status == 1){
+            $return = [
+                'status' =>  false,
+                'msg' => '该试卷已经启用！'
+            ];
+        }else{
+            $action = $this->where('id',$id)->update(['is_use'=>'1']);
+            if($action) {
+                $return = [
+                    'status' => true,
+                    'msg' => '操作成功！'
+                ];
+            }else{
+                $return = [
+                    'status' => false,
+                    'msg' => '操作失败！'
+                ];
+            }
+        }
+        return $return;
+    }
+
+
+    /**
+     * Created by
+     * Author : pjy
+     * Date : {$DATE}
+     * Time : {$TIME}
+     * @param $id
+     * 停用试卷
+     */
+    public function stopit($id){
+        $result = $this->where('id',$id)->select('is_use')->get()->toArray();
+        $status = $result[0]['is_use'];
+        $return = array();
+        if($status == 0){
+            $return = [
+                'status' =>  false,
+                'msg' => '该试卷已经停用！'
+            ];
+        }else{
+            $action = $this->where('id',$id)->update(['is_use'=>'0']);
+            if($action) {
+                $return = [
+                    'status' => true,
+                    'msg' => '操作成功！'
+                ];
+            }else{
+                $return = [
+                    'status' => false,
+                    'msg' => '操作失败！'
+                ];
+            }
+        }
+        return $return;
+    }
+
 }

@@ -198,7 +198,10 @@ class ScoreController extends Controller
      * Time : {$TIME}
      * 学生详细信息
      */
-    public function details(){
+    public function details(Request $request){
+        $testpaper = $request->get('testpape_id');
+        $account = $request->get('account_id');
+        echo $testpaper."".$account;
         return view('Admin.Score.details');
     }
 

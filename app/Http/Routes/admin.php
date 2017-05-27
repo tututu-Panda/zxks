@@ -53,6 +53,8 @@ Route::group(['middleware'=>'auth','namespace'=>'Admin','prefix'=>'admin'],funct
 
 //    试卷列表
     Route::get("/Paper/index",'PaperController@index');
+    Route::post("/Paper/action",'PaperController@usePaper');
+
 
 
 
