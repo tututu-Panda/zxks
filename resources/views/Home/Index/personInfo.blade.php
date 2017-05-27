@@ -192,19 +192,20 @@
 
             </div>
         </div>
+    </div>
         {{--这里是修改资料的表单，默认为隐藏，点击按钮时激活--}}
         <div class="modify-form" style="display: none;margin-top: 10px;">
             <form class="layui-form">
                 <div class="layui-form-item">
                     <label class="layui-form-label">姓名：</label>
                     <div class="layui-input-block" style="width:280px;">
-                        <input type="text" name="account" autocomplete="off" placeholder="请输入账号" class="layui-input" style="width:80%;" value="">
+                        <input type="text" name="account" autocomplete="off" placeholder="请输入姓名" class="layui-input" style="width:80%;" value="xuanhaoo">
                     </div>
                 </div>
                 <div class="layui-form-item">
                     <label class="layui-form-label">email：</label>
                     <div class="layui-input-block" style="width:280px;">
-                        <input type="text" name="account" autocomplete="off" placeholder="请输入账号" class="layui-input" style="width:80%;" value="">
+                        <input type="text" name="account" autocomplete="off" placeholder="请输入邮箱" class="layui-input" style="width:80%;" value="111">
                     </div>
                 </div>
                 <div class="layui-form-item">
@@ -217,7 +218,7 @@
                 <div class="layui-form-item">
                     <label class="layui-form-label">手机号码：</label>
                     <div class="layui-input-block" style="width:280px;">
-                        <input type="text" name="account" autocomplete="off" placeholder="请输入账号" class="layui-input" style="width:80%;" value="">
+                        <input type="text" name="account" autocomplete="off" placeholder="请输入手机号码" class="layui-input" style="width:80%;" value="111">
                     </div>
                 </div>
                 <div class="layui-form-item">

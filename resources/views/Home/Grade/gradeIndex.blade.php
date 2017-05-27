@@ -11,6 +11,7 @@
         float: left;
         width: 100%;
         min-height: 85vh;
+        height: auto;
         background-color: #f3f3f4;
     }
     .index-content {
@@ -84,7 +85,7 @@
                             <div class="echarts1" id="echarts-test" style="height:300px;"></div>
                         </div>
                     </div>
-                    <div class="ui stacked segments test-type1" style="margin-left: 2%;margin-top: 3%;">
+                    <div class="ui stacked segments test-type1" style="margin-left: 2%;margin-top: 3%; margin-bottom: 2%;">
                         <div class="ui segment">
                             <p>每次成绩</p>
                         </div>
@@ -95,7 +96,7 @@
                 </div>
             </div>
         </div>
-
+</div>
 
 
         @endsection

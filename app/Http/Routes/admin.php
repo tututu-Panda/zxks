@@ -37,7 +37,16 @@ Route::group(['middleware'=>'auth','namespace'=>'Admin','prefix'=>'admin'],funct
 
 //    题库管理
     Route::get("/DataBase/index",'DataBaseController@index');
-
+    Route::any("/DataBase/editType/{id}","DataBaseController@editType");
+    Route::post("/DataBase/editTypeHandle","DataBaseController@editTypeHandle");
+    Route::post("/DataBase/addTypeHandle","DataBaseController@addTypeHandle");
+    Route::any("/DataBase/deleteType","DataBaseController@deleteType");
+    Route::any("/DataBase/baseDetail/{id}","DataBaseController@baseDetail");
+    Route::any("/DataBase/addQuestion/{id}","DataBaseController@addQuestion");
+    Route::post("/DataBase/addQuesHandle","DataBaseController@addQuesHandle");
+    Route::any("/DataBase/editQuestion/{id}","DataBaseController@editQuestion");
+    Route::post("/DataBase/editQuesHandle","DataBaseController@editQuesHandle");
+    Route::any("/DataBase/deleteQues","DataBaseController@deleteQues");
 
 //    成绩统计
     // 成绩查询

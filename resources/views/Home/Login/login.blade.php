@@ -124,13 +124,13 @@
 
                     <div class="ui divider"></div>
                     <div class="footer">
-                        <div class="text"> 没有账号？ </div>
-                        <div class="ui vertical animated orange mini button signup">
-                            <div class="visible content"> 立刻注册 </div>
-                            <div class="hidden content">
-                                <i class="users icon"></i>
-                            </div>
-                        </div>
+                        {{--<div class="text"> 没有账号？ </div>--}}
+                        {{--<div class="ui vertical animated orange mini button signup">--}}
+                            {{--<div class="visible content"> 立刻注册 </div>--}}
+                            {{--<div class="hidden content">--}}
+                                {{--<i class="users icon"></i>--}}
+                            {{--</div>--}}
+                        {{--</div>--}}
                     </div>
                 </div>
 
