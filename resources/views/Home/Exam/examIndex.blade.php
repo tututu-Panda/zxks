@@ -238,8 +238,8 @@
             </div>
             {{--右侧容器结束--}}
         </div>
-
-
+    </div>
+</div>
 
         @endsection
         @section('script')

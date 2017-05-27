@@ -18,5 +18,4 @@ layui.config({
         layer.full(index);
     });
     form.render();
-
 });
