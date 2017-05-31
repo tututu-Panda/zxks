@@ -1,0 +1,53 @@
+
+body{
+    padding:0px !important;
+    margin:0px !important;
+    font-family: "微软雅黑","Microsoft YaHei","Microsoft YaHei UI", "Segoe UI", Arial, Verdana, Sans-Serif, sans-serif;
+    background-color: #ffffff;
+}
+
+
+.layui-form{
+    margin-top: 20px;
+}
+.layui-form-item{
+    padding: 20px;
+}
+
+.layui-form-label{
+    padding-right: 40px;
+}
+
+.layui-form-item .layui-input-inline {
+    width: 250px;
+}
+.layui-input, .layui-textarea {
+    padding-left: 30px;
+}
+
+.left{
+width:40%;
+float: left;
+padding: 10px;
+margin-left:100px;
+}
+
+.left .layui-form-item{
+    padding-left: 70px;
+}
+
+.right{
+    width: 40%;
+    float: left;
+    padding: 10px;
+    margin-left:90px;
+}
+
+.beg-login-icon {
+    position: absolute;
+    color: #cccccc;
+    top: 8px;
+    left: 10px;
+}
+
+

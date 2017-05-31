@@ -95,5 +95,25 @@ layui.config({
 
 
 
+    // 试卷编辑事件
+    $(".edit").on('click',function(){
+       var id = $(this).data('id');
+       var index = layer.open({
+            type:2,
+            title:['编辑试卷','text-align:center;'],
+            area:['1100px','500px'],
+            resize:false,
+            maxmin:true,
+            content:editurl+"?testpaper_id="+id,
+            end:function(){
+                location.reload();
+            }
+        });
+        layer.full(index);
+    });
+
+
+
+
 
 });

@@ -111,7 +111,8 @@
     <script>
          var paperurl = "{{url('admin/Score/getpaper')}}";
          var listurl = "{{url('admin/Paper/index')}}";
-         var actionurl = "{{url('admin/Paper/action')}}"
+         var actionurl = "{{url('admin/Paper/action')}}";
+         var editurl = "{{url('admin/Paper/edit')}}";
     </script>
     <script src="{{asset("static/js/Paper.js")}}"></script>
     @endsection

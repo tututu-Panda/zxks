@@ -13,7 +13,7 @@ class TestPaper extends Model
      *
      * @var array
      */
-//    protected $fillable = ['id','name', 'type', 'question_ids',''];
+    protected $fillable = ['id','name', 'type', 'full_score','pass_score','exam_time','beginDate','endDate','choice_ids','fill_ids'];
 
     /**
      * The attributes excluded from the model's JSON form.

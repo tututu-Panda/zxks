@@ -51,6 +51,11 @@
         "title": "试卷列表",
         "icon": "&#xe63c;",
         "href": "admin/Paper/index"
+      },
+      {
+        "title": "试卷出卷",
+        "icon": "&#xe631;",
+        "href": "admin/Paper/setpaper"
       }
     ]
   }
