@@ -163,22 +163,22 @@
                                         <div class="detail-info"><span class="info-font"><i class="icon user"></i>账号：</span>{{ $info['account'] }}</div>
                                     </div>
                                     <div class="five wide column">
-                                        <div class="detail-info"><span class="info-font"><i class="icon spy"></i>姓名：</span>1313465</div>
+                                        <div class="detail-info"><span class="info-font"><i class="icon spy"></i>姓名：</span>{{ $info['name'] }}</div>
                                     </div>
                                     <div class="five wide column">
-                                        <div class="detail-info"><span class="info-font"><i class="icon tag"></i>部门：</span></div>
+                                        <div class="detail-info"><span class="info-font"><i class="icon tag"></i>部门：</span>{{ $info['info'] }}</div>
                                     </div>
                                     <div class="five wide column">
-                                        <div class="detail-info"><span class="info-font"><i class="icon heterosexual"></i>性别：</span></div>
+                                        <div class="detail-info"><span class="info-font"><i class="icon heterosexual"></i>性别：</span>@if($info['sex'] == 1) 男 @elseif($info['sex'] == 0) 女 @endif</div>
                                     </div>
                                     <div class="five wide column">
-                                        <div class="detail-info"><span class="info-font"><i class="icon mail"></i>email：</span></div>
+                                        <div class="detail-info"><span class="info-font"><i class="icon mail"></i>email：</span>{{ $info['email'] }}</div>
                                     </div>
                                     <div class="five wide column">
-                                        <div class="detail-info"><span class="info-font"><i class="icon mobile"></i>手机号码：</span></div>
+                                        <div class="detail-info"><span class="info-font"><i class="icon mobile"></i>手机号码：</span>{{ $info['phone'] }}</div>
                                     </div>
                                     <div class="five wide column">
-                                        <div class="detail-info"><span class="info-font"><i class="icon add To Calendar"></i>注册时间：</span></div>
+                                        <div class="detail-info"><span class="info-font"><i class="icon add To Calendar"></i>注册时间：</span>{{ $info['create_time'] }}</div>
                                     </div>
                                 </div>
                                 <div class="modify-btn"><button class="ui button" id="modify">编辑资料</button></div>
@@ -196,34 +196,36 @@
         {{--这里是修改资料的表单，默认为隐藏，点击按钮时激活--}}
         <div class="modify-form" style="display: none;margin-top: 10px;">
             <form class="layui-form">
+                <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                <input type="hidden" id="id"  name="id" value="{{ $info['id'] }}" />
                 <div class="layui-form-item">
                     <label class="layui-form-label">姓名：</label>
                     <div class="layui-input-block" style="width:280px;">
-                        <input type="text" name="account" autocomplete="off" placeholder="请输入姓名" class="layui-input" style="width:80%;" value="xuanhaoo">
+                        <input type="text" name="name" autocomplete="off" placeholder="请输入姓名" class="layui-input" style="width:80%;" value="{{ $info['name'] }}">
                     </div>
                 </div>
                 <div class="layui-form-item">
                     <label class="layui-form-label">email：</label>
                     <div class="layui-input-block" style="width:280px;">
-                        <input type="text" name="account" autocomplete="off" placeholder="请输入邮箱" class="layui-input" style="width:80%;" value="111">
+                        <input type="text" name="email" autocomplete="off" placeholder="请输入邮箱" class="layui-input" style="width:80%;" value="{{ $info['email'] }}">
                     </div>
                 </div>
                 <div class="layui-form-item">
                     <label class="layui-form-label">性别：</label>
                     <div class="layui-input-block">
-                        <input type="radio" name="sex" value="1" title="男" checked>
-                        <input type="radio" name="sex" value="0" title="女" >
+                        <input type="radio" name="sex" value="1" title="男" @if($info['sex'] == 1) checked @endif>
+                        <input type="radio" name="sex" value="0" title="女" @if($info['sex'] == 0) checked @endif>
                     </div>
                 </div>
                 <div class="layui-form-item">
                     <label class="layui-form-label">手机号码：</label>
                     <div class="layui-input-block" style="width:280px;">
-                        <input type="text" name="account" autocomplete="off" placeholder="请输入手机号码" class="layui-input" style="width:80%;" value="111">
+                        <input type="text" name="phone" autocomplete="off" placeholder="请输入手机号码" class="layui-input" style="width:80%;" value="{{ $info['phone'] }}">
                     </div>
                 </div>
                 <div class="layui-form-item">
                     <div class="layui-input-block">
-                        <button class="layui-btn" lay-submit="" lay-filter="addsave">保存</button>
+                        <button class="layui-btn" lay-submit="" lay-filter="editSave">保存</button>
                         <button type="reset" class="layui-btn layui-btn-primary">重置</button>
                     </div>
                 </div>
@@ -234,6 +236,10 @@
             @parent
             <script src="{{ URL::asset('static/jsbars/jquery.uploadify.min.js')}}"></script>
             <script src="{{ URL::asset('static/layui/layui.js') }}"></script>
+            <script>
+                var editHandleUrl = "{{ url('home/Index/editHandle') }}";
+                var afterUrl = "{{ url('home/Index/personInfo') }}";
+            </script>
             <script src="{{ URL::asset('static/js/home_personInfo.js') }}"></script>
             {{--<script type="text/javascript" src="{{ URL::asset('static/layui/layui.js')}}"></script>--}}
 

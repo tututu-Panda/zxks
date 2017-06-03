@@ -75,78 +75,26 @@
                         </div>
                         <div class="ui teal segment">
                             <div class="ui cards test-type2">
-                                <div class="card single-test" style="margin: .875em 1.5em;">
-                                    <div class="content">
-                                        <div class="header">第一次Java测试</div>
-                                        <div class="description">
-                                            这里是一些介绍
+                                @foreach($javapaperList as $v1)
+                                    <div class="card single-test" style="margin: .875em 1.5em;">
+                                        <div class="content">
+                                            <div class="header">{{ $v1['name'] }}</div>
+                                            <div class="description">
+                                                这里是一些介绍
+                                            </div>
+                                            <div class="meta">
+                                                出卷人：{{ $v1['create_user'] }}
+                                            </div>
+                                            <div class="meta">
+                                                考试时间：{{ $v1['beginDate'] }}
+                                            </div>
                                         </div>
-                                        <div class="meta">
-                                            出卷人：张三
-                                        </div>
-                                        <div class="meta">
-                                            考试时间：2017-05-18 09:00
-                                        </div>
-                                    </div>
-                                    <div class="ui bottom attached button start-test">
-                                        <i class="write icon"></i>
-                                        开始考试
-                                    </div>
-                                </div>
-                                <div class="card single-test" style="margin: .875em 1.5em;">
-                                    <div class="content">
-                                        <div class="header">第一次Java测试</div>
-                                        <div class="description">
-                                            这里是一些介绍
-                                        </div>
-                                        <div class="meta">
-                                            出卷人：张三
-                                        </div>
-                                        <div class="meta">
-                                            考试时间：2017-05-18 09:00
+                                        <div class="ui bottom attached button start-test" data-id="{{ $v1['id'] }}">
+                                            <i class="write icon"></i>
+                                            开始考试
                                         </div>
                                     </div>
-                                    <div class="ui bottom attached button start-test">
-                                        <i class="write icon"></i>
-                                        开始考试
-                                    </div>
-                                </div>
-                                <div class="card single-test" style="margin: .875em 1.5em;">
-                                    <div class="content">
-                                        <div class="header">第一次Java测试</div>
-                                        <div class="description">
-                                            这里是一些介绍
-                                        </div>
-                                        <div class="meta">
-                                            出卷人：张三
-                                        </div>
-                                        <div class="meta">
-                                            考试时间：2017-05-18 09:00
-                                        </div>
-                                    </div>
-                                    <div class="ui bottom attached button start-test">
-                                        <i class="write icon"></i>
-                                        开始考试
-                                    </div>
-                                </div>
-                                <div class="card single-test" style="margin: .875em 1.5em;">
-                                    <div class="content">
-                                        <div class="header">第一次Java测试</div>
-                                        <div class="description">
-                                            这里是一些介绍
-                                        </div>
-                                        <div class="meta">
-                                            出卷人：张三
-                                        </div>
-                                        <div class="meta">
-                                            考试时间：2017-05-18 09:00
-                                        </div>
-                                    </div>
-                                    <div class="ui bottom attached button start-test">
-                                        <i class="write icon"></i>
-                                        开始考试
-                                    </div>
-                                </div>
+                                    @endforeach
                             </div>
                         </div>
                     </div>
@@ -156,78 +104,27 @@
                         </div>
                         <div class="ui pink segment">
                             <div class="ui cards test-type2">
-                                <div class="card single-test" style="margin: .875em 1.5em;">
-                                    <div class="content">
-                                        <div class="header">第一次Java测试</div>
-                                        <div class="description">
-                                            这里是一些介绍
+                                @foreach($cpaperList as $v2)
+                                    <div class="card single-test" style="margin: .875em 1.5em;">
+                                        <div class="content">
+                                            <div class="header">{{ $v2['name'] }}</div>
+                                            <div class="description">
+                                                这里是一些介绍
+                                            </div>
+                                            <div class="meta">
+                                                出卷人：{{ $v2['create_user'] }}
+                                            </div>
+                                            <div class="meta">
+                                                考试时间：{{ $v2['beginDate'] }}
+                                            </div>
                                         </div>
-                                        <div class="meta">
-                                            出卷人：张三
-                                        </div>
-                                        <div class="meta">
-                                            考试时间：2017-05-18 09:00
-                                        </div>
-                                    </div>
-                                    <div class="ui bottom attached button start-test">
-                                        <i class="write icon"></i>
-                                        开始考试
-                                    </div>
-                                </div>
-                                <div class="card single-test" style="margin: .875em 1.5em;">
-                                    <div class="content">
-                                        <div class="header">第一次Java测试</div>
-                                        <div class="description">
-                                            这里是一些介绍
-                                        </div>
-                                        <div class="meta">
-                                            出卷人：张三
-                                        </div>
-                                        <div class="meta">
-                                            考试时间：2017-05-18 09:00
+                                        <div class="ui bottom attached button start-test" data-id="{{ $v2['id'] }}">
+                                            {{--<a href="javascript:;" data-id="{{ $v1['id'] }}" class="">编辑</a>--}}
+                                            <i class="write icon"></i>
+                                            开始考试
                                         </div>
                                     </div>
-                                    <div class="ui bottom attached button start-test">
-                                        <i class="write icon"></i>
-                                        开始考试
-                                    </div>
-                                </div>
-                                <div class="card single-test" style="margin: .875em 1.5em;">
-                                    <div class="content">
-                                        <div class="header">第一次Java测试</div>
-                                        <div class="description">
-                                            这里是一些介绍
-                                        </div>
-                                        <div class="meta">
-                                            出卷人：张三
-                                        </div>
-                                        <div class="meta">
-                                            考试时间：2017-05-18 09:00
-                                        </div>
-                                    </div>
-                                    <div class="ui bottom attached button start-test">
-                                        <i class="write icon"></i>
-                                        开始考试
-                                    </div>
-                                </div>
-                                <div class="card single-test" style="margin: .875em 1.5em;">
-                                    <div class="content">
-                                        <div class="header">第一次Java测试</div>
-                                        <div class="description">
-                                            这里是一些介绍
-                                        </div>
-                                        <div class="meta">
-                                            出卷人：张三
-                                        </div>
-                                        <div class="meta">
-                                            考试时间：2017-05-18 09:00
-                                        </div>
-                                    </div>
-                                    <div class="ui bottom attached button start-test">
-                                        <i class="write icon"></i>
-                                        开始考试
-                                    </div>
-                                </div>
+                                @endforeach
                         </div>
                     </div>
 

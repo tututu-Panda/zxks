@@ -16,11 +16,15 @@ Route::group(['middleware'=>'home','namespace'=>'Home','prefix'=>'home'],functio
     Route::get('/index',['as' => 'Home.Index.index','uses' => 'IndexController@index']);
 
     Route::get('/modifyPsw','IndexController@modifyPsw');
-    Route::get('/personInfo',['as' => 'Home.Index.personInfo','uses' => 'IndexController@personInfo']);
+    Route::get('/Index/personInfo',['as' => 'Home.Index.personInfo','uses' => 'IndexController@personInfo']);
     Route::get('/examIndex',['as' => 'Home.Exam.examIndex', 'uses' => 'ExamController@examIndex']);
     Route::get('/gradeIndex','GradeController@gradeIndex');
-    Route::get('/examTest','ExamController@examTest');
+    Route::get('/examTest/{id}','ExamController@examTest');
     Route::any('/uploadHeadImg','PersonInfoController@uploadHeadImg');
+    Route::post('/Index/editHandle','IndexController@editStuHandle');
+    Route::post('/PswHandle','IndexController@modifyPswHandle');
+    Route::get('/Grade/gradeDetail/{paperId}','GradeController@gradeDetail');
+    Route::post('/Exam/checkPaper','ExamController@checkPaper');
 
 
 //
