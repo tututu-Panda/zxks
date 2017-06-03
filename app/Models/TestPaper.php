@@ -13,7 +13,7 @@ class TestPaper extends Model
      *
      * @var array
      */
-//    protected $fillable = ['id','name', 'type', 'question_ids',''];
+    protected $fillable = ['id','name', 'type', 'full_score','pass_score','exam_time','beginDate','endDate','choice_ids','fill_ids'];
 
     /**
      * The attributes excluded from the model's JSON form.
@@ -24,6 +24,75 @@ class TestPaper extends Model
     // 试卷与得分为：一对多关系
     public function scores(){
         return $this->hasMany('App\Models\Score','testpaper_id');
+    }
+
+
+    /**
+     * Created by
+     * Author : pjy
+     * Date : {$DATE}
+     * Time : {$TIME}
+     * 启用试卷
+     */
+    public function useit($id){
+        $result = $this->where('id',$id)->select('is_use')->get()->toArray();
+        $status = $result[0]['is_use'];
+        $return = array();
+        if($status == 1){
+            $return = [
+                'status' =>  false,
+                'msg' => '该试卷已经启用！'
+            ];
+        }else{
+            $action = $this->where('id',$id)->update(['is_use'=>'1']);
+            if($action) {
+                $return = [
+                    'status' => true,
+                    'msg' => '操作成功！'
+                ];
+            }else{
+                $return = [
+                    'status' => false,
+                    'msg' => '操作失败！'
+                ];
+            }
+        }
+        return $return;
+    }
+
+
+    /**
+     * Created by
+     * Author : pjy
+     * Date : {$DATE}
+     * Time : {$TIME}
+     * @param $id
+     * 停用试卷
+     */
+    public function stopit($id){
+        $result = $this->where('id',$id)->select('is_use')->get()->toArray();
+        $status = $result[0]['is_use'];
+        $return = array();
+        if($status == 0){
+            $return = [
+                'status' =>  false,
+                'msg' => '该试卷已经停用！'
+            ];
+        }else{
+            $action = $this->where('id',$id)->update(['is_use'=>'0']);
+            if($action) {
+                $return = [
+                    'status' => true,
+                    'msg' => '操作成功！'
+                ];
+            }else{
+                $return = [
+                    'status' => false,
+                    'msg' => '操作失败！'
+                ];
+            }
+        }
+        return $return;
     }
 
 }

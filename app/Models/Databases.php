@@ -20,7 +20,7 @@ class Databases extends Model
     const UPDATED_AT='update_time';
     const CREATED_AT = 'create_time';
     //白名单字段
-    protected $fillable = ['question','databasetype_id','question_type','option_a','option_b','option_c','option_d','select','answer','difficult','create_time','update_time','comment'];
+    protected $fillable = ['id','question','databasetype_id','question_type','option_a','option_b','option_c','option_d','select','answer','difficult','create_time','update_time','comment'];
 
 
     public function databaseType() {
