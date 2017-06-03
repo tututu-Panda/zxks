@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Home;
 
 use App\Models\Databases;
+use App\Models\Score;
 use App\Models\Home\Scores;
 use App\Models\TestPaper;
 use App\Models\Home\Student;
@@ -79,6 +80,7 @@ class ExamController extends Controller
     public function checkPaper(Request $request) {
         //获取所有的表单数据
         $input = $request->all();
+        die;
         $detail = TestPaper::find($input['paperId'])->toArray();  //获取该试卷的信息
         $idsArr_cho = explode(',',$detail['choice_ids']);       //将题号集合转化为数组，方便下面条件查找
         $idsArr_fill = explode(',',$detail['fill_ids']);
@@ -88,10 +90,16 @@ class ExamController extends Controller
 
         //查找出填空题答案，转化为一维数组
         $fillAns = Databases::whereIn('id',$idsArr_fill)->select('answer')->get()->toArray();
-        $fillAns_one = array_column($fillAns,'answer');
-
-        $count1 = 0;
-        //循环匹配答案
+        $fillAns_temp = array_column($fillAns,'answer');
+        //将填空题答案读取出来，并按约定符号分隔开，形成二维数组
+        $fillAns_one = array();
+        foreach ($fillAns_temp as $fTemp) {
+            $aTemp  = explode('/_',$fTemp);     //按符号分隔成一维数组
+            array_push($fillAns_one,$aTemp);      //一维数组压入二维数组
+        }
+        $choice_count = 0;        //记录正确的选择题
+        $fill_count = 0;        //记录正确的填空题
+        //循环匹配检查选择题的答案
         for($i = 0;$i < $input['i'];$i++) {
             if($input['q'.$i] == $choiceAns_one[$i]) {
                 DB::table('finaltests')->insert([
@@ -99,9 +107,9 @@ class ExamController extends Controller
                     'student_id' => $input['stuId'],
                     'question_id' => $idsArr_cho[$i],
                     'type_id' => 1,
-                    'is_true' => 1
+                    'is_true' => 1        //1正确，0错误
                 ]);
-                $count1++;
+                $choice_count++;          //技术加一
             }else {
                 DB::table('finaltests')->insert([
                     'testpaper_id' => $input['paperId'],
@@ -112,8 +120,58 @@ class ExamController extends Controller
                 ]);
             }
         }
-//        for($j = 0;$j < $input['j'];$j++) {}
-        p($count1);die;
+        //循环匹配检查填空题的答案，判断输入的填空题是否存在于答案数组中
+        for($j = 0;$j < $input['j'];$j++) {
+            if(in_array($input['f'.$j], $fillAns_one[$j])) {
+                DB::table('finaltests')->insert([
+                    'testpaper_id' => $input['paperId'],
+                    'student_id' => $input['stuId'],
+                    'question_id' => $idsArr_fill[$j],
+                    'type_id' => 2,
+                    'is_true' => 1
+                ]);
+                $fill_count++;
+            }else {
+                DB::table('finaltests')->insert([
+                    'testpaper_id' => $input['paperId'],
+                    'student_id' => $input['stuId'],
+                    'question_id' => $idsArr_fill[$j],
+                    'type_id' => 2,
+                    'is_true' => 0
+                ]);
+            }
+        }
+        $jsonData = $this->addScore($input['stuId'],$input['paperId'],$choice_count,$fill_count,$detail['beginDate']);
+        return response()->json($jsonData);
+    }
+
+    public function addScore($account,$paperId,$choice_count,$fill_count,$start_time) {
+        //选择题每道5分
+        $choice_grade = $choice_count * 5;
+        //填空题每道5分
+        $fill_grade = $fill_count * 5;
+        //总分
+        $total = $choice_grade + $fill_grade;
+        $data = [
+            'account' => $account,
+            'testpaper_id' => $paperId,
+            'score' => $total,
+            'start_time' => $start_time,
+            'end_time' => date("y-m-d h:i:s"),
+        ];
+        $score = Scores::create($data);
+        if($score) {
+            $jsonData = [
+                'success' => true,
+                'msg' => '成功!',
+            ];
+        }else {
+            $jsonData = [
+                'success' => false,
+                'msg' => '失败!',
+            ];
+        }
+        return $jsonData;
     }
 
 

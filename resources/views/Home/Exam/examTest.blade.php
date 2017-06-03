@@ -65,9 +65,9 @@
                     @foreach($choiceList as $q1)
                         <div class="layui-form-item">
                             <p>{{ $i }}.{{ $q1['question'] }}</p>
-                            <div class="layui-input-block" style="padding-top: 15px;">
+                            <div class="layui-input-block" style="padding-top: 15px;" >
                                 <div class="radio-style">
-                                    <input type="radio" name="q{{ $i }}" value="A" title="A. {{ $q1['option_a'] }}">
+                                    <input type="radio" name="q{{ $i }}" value="A" title="A. {{ $q1['option_a'] }}" >
                                 </div>
                                 <div class="radio-style">
                                     <input type="radio" name="q{{ $i }}" value="B" title="B. {{ $q1['option_b'] }}">
@@ -88,7 +88,7 @@
                     <?php $j = 0; ?>
                     @foreach($fillList as $q2)
                         <div class="layui-form-item">
-                            <p>{{ $j }}.{{ $q2['question'] }}&nbsp;&nbsp;&nbsp;<input type="text" name="f{{ $j }}" class="tiankong"></p>
+                            <p>{{ $j }}.{{ $q2['question'] }}&nbsp;&nbsp;&nbsp;<input type="text" name="f{{ $j }}" class="tiankong" required  lay-verify="required"></p>
 
                         </div>
                         <?php $j++; ?>
@@ -133,8 +133,10 @@
 
     </script>
     <script>
+            var countt = "{{ $i }}";
             var endTime = "{{ $endTime }}";
             var sendUrl = "{{ url('home/Exam/checkPaper') }}";
+            var afterUrl = "/gradeIndex";
     </script>
     <script src="{{ URl::asset('static/jsbars/jquery.jcountdown.js') }}"></script>
     <script src="{{ URl::asset('static/js/home_exam.js') }}"></script>

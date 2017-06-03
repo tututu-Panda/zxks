@@ -16,5 +16,7 @@ class Scores extends Model
     protected  $primaryKey = 'id';
     //设置不要create_at和update_at字段
     public $timestamps = false;
+    //白名单
+    protected $fillable = ['account', 'testpaper_id', 'score', 'start_time', 'end_time'];
 
 }
