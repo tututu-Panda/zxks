@@ -70,7 +70,11 @@ Route::group(['middleware'=>'auth','namespace'=>'Admin','prefix'=>'admin'],funct
     Route::get("/Paper/dbindex","PaperController@dbIndex");
     Route::post("/Paper/addpaper","PaperController@addPaper");
 
-
+// 学生用户管理
+    Route::get('/Student/index',"StudentController@index");
+    Route::post('/Student/create',"StudentController@create");
+    Route::post('/Student/resetPs',"StudentController@resetPs");
+    Route::post('/Student/destroy',"StudentController@destroy");
 
 
 
