@@ -6,13 +6,7 @@ use App\Http\Requests\Request;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Validation\Factory as ValidationFactory;
 
-
-/**
- * Class AddPaperRequest
- * @package App\Http\Requests\Admin
- * 添加或修改试卷的验证
- */
-class EditPaperRequest extends Request
+class UpdatePaperRequest extends Request
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -56,10 +50,10 @@ class EditPaperRequest extends Request
             'Numc',
             function ($attribute, $value, $parameters) {
                 // 获得个数
-               $number = count(explode(',',$value));
-               if($number == $parameters[0]){
-                   return true;
-               }
+                $number = count(explode(',',$value));
+                if($number == $parameters[0]){
+                    return true;
+                }
             },
             '选择题目个数必须为12个！'
         );
@@ -79,6 +73,8 @@ class EditPaperRequest extends Request
 
     }
 
+
+
     /**
      * Get the validation rules that apply to the request.
      *
@@ -86,12 +82,14 @@ class EditPaperRequest extends Request
      */
     public function rules()
     {
+
+        $id = Input::get('id');
         $begintime = Input::get('beginDate');
         return [
-            'name' => 'required|unique:testpapers,name',
+            'name' => 'required|unique:testpapers,name,'.$id,
             'choice_ids' => 'required|Numc:12',
             'fill_ids' => 'required|Numf:8',
-            'beginDate' => 'required|date|after:today',
+            'beginDate' => 'required|date',
             'endDate' => 'required|date|after:beginDate|foo:'.$begintime,
         ];
     }
@@ -102,20 +100,17 @@ class EditPaperRequest extends Request
      * Author : pjy
      * Date : ${DATE}
      * Time : ${TIME}
-     * @return array
-     * 返回验证结果
+     * 返回信息
      */
-    public function messages()
-    {
-        return[
-            'name.required'   =>      '试卷名称是必须的！',
-            'choice_ids.required'       =>      '选择题是必须的！',
-            'fill_ids.required'         =>      '填空题是必须的！',
-            'beginDate.required'        =>      '开始时间是必须的！',
-            'endDate.required'          =>      '结束时间是必须的！',
-            'testpaper_name.unique'     =>      '试卷名称已经存在！',
-            'beginDate.after'            =>      '开始时间不能在今天之前！',
-            'endDate.after'              =>      '结束时间不能早于开始时间！',
+    public function messages(){
+        return [
+            'name.required'             =>  '试卷名称是必须的!',
+            'name.unique'               =>  '试卷名称已经存在!',
+            'choice_ids.required'       =>  '选择题是必须的!',
+            'fill_ids.required'         =>  '选择题是必须的!',
+            'beginDate.required'        =>  '开始时间是必须的!',
+            'endDate.required'          =>  '结束时间是必须的!',
+            'endDate.after'             =>  '结束时间不能在开始时间之前!'
         ];
     }
 }

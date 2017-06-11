@@ -110,6 +110,20 @@ class Databases extends Model
         $info = $this::where('id',$id)->get()->toArray();
         return $info;
     }
+
+    /**
+     * Created by
+     * Author : pjy
+     * Date : ${DATE}
+     * Time : ${TIME}
+     * 根据题目id得到难度类型
+     */
+    public function getDifficultById($question_id)
+    {
+        $return = $this::where('id', $question_id)->select('difficult')->get()->toArray();
+        return $return;
+    }
+
     public function getStuQuesDiff($quesIdsArr) {
         $diff1 = $this->where(['difficult'=>1])->whereIn('id',$quesIdsArr)->count();      //简单
         $diff2 = $this->where(['difficult'=>2])->whereIn('id',$quesIdsArr)->count();      //一般
@@ -118,6 +132,7 @@ class Databases extends Model
         $difficult = implode(',',$diff);    //将数组用逗号分隔成字符串
         return $difficult;
     }
+
     public function getStuQuesType($quesIdsArr) {
         $qtype1 = $this->where(['question_type'=>1])->whereIn('id',$quesIdsArr)->count();     //选择题
         $qtype2 = $this->where(['question_type'=>2])->whereIn('id',$quesIdsArr)->count();     //填空题
@@ -129,5 +144,6 @@ class Databases extends Model
     public function getPaperQues($quesIdsArr) {
         $data = $this->whereIn('id',$quesIdsArr)->get()->toArray();
         return $data;
+
     }
 }

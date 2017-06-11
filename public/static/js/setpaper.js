@@ -105,8 +105,9 @@ layui.config({
             if(data.status === false) {
                 layer.msg(data.data,{icon:2},{time:3000});
             }else {
-                layer.msg(data.data,{icon:1},{time:3000},function () {
-                    location.reload();
+                layer.msg(data.data, {time: 3000,icon: 1},function () {
+                   location.reload();
+                   form.render('form');
                 });
             }
         })

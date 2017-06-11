@@ -11,9 +11,9 @@
         }
 
         .footerdiv{
-            padding-top:20px;
+            padding-top:10px;
             padding-bottom: 8px;
-            padding-left: 5px;
+            padding-right: 150px;
         }
         .layui-elem-quote {
             margin-top: 10px;
@@ -44,7 +44,7 @@
         <fieldset class="layui-elem-field">
             <legend>添加{{$type_name}}</legend>
 
-            <table class="layui-table">
+            <table class="layui-table site-table">
                 <thead>
                 <tr>
                     <th>id</th>
@@ -69,7 +69,7 @@
                 @endforeach
                 </tbody>
             </table>
-            <div class="footerdiv">
+            <div class="footerdiv" style="text-align: right">
                 <button class="layui-btn layui-btn-small layui-btn-normal checkall">全选</button>
                 <button class="layui-btn layui-btn-small layui-btn-normal recheck">反选</button>
                 <button class="layui-btn layui-btn-small add">添加</button>

@@ -75,7 +75,10 @@ layui.config({
             }else{
                 var tf = parent.setChoice(check_val);
                 if(tf == "true"){
-                    layer.msg('添加成功!', {time: 2000,icon: 1});
+                    layer.msg('添加成功!', {time: 2000,icon: 1},function () {
+                        var index = parent.layer.getFrameIndex(window.name); //先得到当前iframe层的索引
+                        parent.layer.close(index);
+                    });
                 }
             }
         }
@@ -85,7 +88,10 @@ layui.config({
             }else{
                 var tf = parent.setFill(check_val);
                 if(tf == "true"){
-                    layer.msg('添加成功!', {time: 2000,icon: 1});
+                    layer.msg('添加成功!', {time: 2000,icon: 1},function () {
+                        var index = parent.layer.getFrameIndex(window.name); //先得到当前iframe层的索引
+                        parent.layer.close(index);
+                    });
                 }
             }
         }

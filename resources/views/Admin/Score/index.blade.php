@@ -18,6 +18,9 @@
         .layui-form-select{
             width: 80%; /*     调整select的宽度*/
         }
+        .admin-table-page {position: fixed;z-index: 19940201;bottom: 0;width: 100%;background-color: #eee;border-bottom: 1px solid #ddd;left: 0px;text-align: center}
+        .admin-table-page .page{padding-left:20px;}
+        .admin-table-page .page .layui-laypage {margin: 6px 0 0 0;}
     </style>
     @endsection
 
@@ -33,8 +36,6 @@
                         <label class="layui-form-label" style="padding: 4px 1px;">筛选学科</label>
                         <div class="layui-input-inline">
                             <select name="subject" lay-verify="required"  lay-filter="subject">
-                                <option value="">直接选择或搜索</option>
-
                                     <option value="1" @if($subject == 1) selected @endif>java</option>
                                     <option value="2" @if($subject == 2) selected @endif >c语言</option>
                             </select>
@@ -47,7 +48,6 @@
                         <label class="layui-form-label" style="padding: 4px 1px;">筛选试卷</label>
                         <div class="layui-input-inline">
                             <select class="select_paper" name="testpaper" required lay-filter="paper">
-                                <option value="">直接选择或搜索</option>
                                 @foreach($allpaper as $item)
                                     <option value="{{$item['id']}}" @if($testpaper == $item['id']) selected @endif>{{$item['name']}}</option>
                                 @endforeach
@@ -62,7 +62,7 @@
                     <div class="layui-form-pane courseList">
                         <label class="layui-form-label" style="padding: 4px 1px;">学号或名称</label>
                         <div class="layui-input-inline">
-                            <input type="text" name="keywords"  placeholder="请输入学号或名称" autocomplete="off" class="layui-input" value="{{$keywords}}" >
+                            <input type="text" name="keywords"  placeholder="请输入学号或名称" autocomplete="off" class="layui-input" value="{{--$keywords--}}" >
                         </div>
                     </div>
                 </div>
@@ -80,6 +80,9 @@
             <legend>成绩信息</legend>
             <div class="layui-field-box">
                 <table class="site-table table-hover">
+                    @if($keywords != "")
+                        <span style="padding-left: 5px; font-size: 20px;">查询结果为：</span>
+                    @endif
                     <thead>
                     @if($students != "")
                     <tr>
@@ -92,8 +95,7 @@
                     </tr>
                     </thead>
                     <tbody>
-                    @foreach($students as$student)
-                        @foreach($student as $stu)
+                        @foreach($students as $stu)
                         <tr>
                             @if($stu['type'] == 1)
                             <td>java</td>
@@ -110,7 +112,7 @@
                             {{--<a href="javascript:;" data-id="{$vo.id}" data-opt="del" class="layui-btn layui-btn-danger layui-btn-mini del">删除</a>--}}
                             </td>
                         </tr>
-                            @endforeach
+
                     @endforeach
                     @else
                         <h2>不存在该查询数据！</h2>
@@ -120,12 +122,23 @@
 
             </div>
         </fieldset>
+        <div class="admin-table-page">
+            <div id="page" class="page">
+            </div>
+        </div>
+
+
     </div>
     @endsection
 
 
 @section('js')
-    <script src="{{asset("static/js/Score.js")}}"></script>
+    <script>
+        var curr = "{{$requestPage}}";
+        var pages = "{{$pages}}";
+    </script>
+    <script src="{{asset("static/js/Score.js")}}">
+    </script>
     <script>
         var paperurl = "{{url('admin/Score/getpaper')}}";
         var listurl = "{{url('admin/Score/index')}}";

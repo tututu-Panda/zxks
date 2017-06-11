@@ -2,6 +2,11 @@
 
 @section('css')
     <link rel="stylesheet" href="{{asset('static/css/Paper.css')}}">
+    <style>
+        .admin-table-page {position: fixed;z-index: 19940201;bottom: 0;width: 100%;background-color: #eee;border-bottom: 1px solid #ddd;left: 0px;text-align: center}
+        .admin-table-page .page{padding-left:20px;}
+        .admin-table-page .page .layui-laypage {margin: 6px 0 0 0;}
+    </style>
 @endsection
 
 
@@ -49,7 +54,7 @@
 
             </form>
         </blockquote>
-    </div>
+
 
     <fieldset class="layui-elem-field">
         <legend>试卷列表</legend>
@@ -104,10 +109,20 @@
             </table>
         </div>
     </fieldset>
-
+        <div class="admin-table-page">
+            <div id="page" class="page">
+            </div>
+        </div>
+    </div>
     @endsection
 
 @section('js')
+    <script>
+        var curr = "{{$requestPage}}";
+        var pages = "{{$pages}}";
+        var is_use = "{{$is_use}}";
+        var subject = "{{$subject}}";
+    </script>
     <script>
          var paperurl = "{{url('admin/Score/getpaper')}}";
          var listurl = "{{url('admin/Paper/index')}}";

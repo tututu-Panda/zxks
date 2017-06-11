@@ -13,7 +13,7 @@ class TestPaper extends Model
      *
      * @var array
      */
-    protected $fillable = ['id','name', 'type', 'full_score','pass_score','exam_time','beginDate','endDate','choice_ids','fill_ids'];
+    protected $fillable = ['id','name', 'type', 'full_score','pass_score','exam_time','beginDate','is_use','endDate','choice_ids','fill_ids'];
 
     /**
      * The attributes excluded from the model's JSON form.
@@ -93,6 +93,41 @@ class TestPaper extends Model
             }
         }
         return $return;
+    }
+
+    /**
+     * Created by
+     * Author : pjy
+     * Date : ${DATE}
+     * Time : ${TIME}
+     * @param $subject
+     * @param $is_use
+     * @param $requestPage
+     * @param $rows
+     * 获得试卷列表
+     */
+    public function getPaperList($subject,$is_use,$requestPage,$rows){
+        // 试卷类型
+        $map = [];
+        if($subject != 'all'){
+            $map['type'] = $subject;
+        }
+        if($is_use != 'all'){
+            $map['is_use'] = $is_use;
+        }
+        // 偏移量
+        $skip = ($requestPage - 1) * $rows;
+        // 获得总数
+        $total = $this->where($map)->count();
+        // 根据偏移量获得数据
+        $list = $this->where($map)->skip($skip)->take($rows)->orderBy('type')->get()->toArray();
+
+        $data = [
+            'pages' => ceil($total / $rows),
+            'list' => $list
+        ];
+        return $data;
+
     }
 
 }
