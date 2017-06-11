@@ -24,7 +24,9 @@ layui.config({
         date: endTime,
         template: $('#template').html(),
         onComplete:function() {
-            //alert("jiesu");
+            layer.msg('考试结束时间已经到了！你不能答题了哦！',{icon:1,time:3000});
+            $("#examForm").find('input,select,textarea').not().attr('disabled',true);
+            //$("#examForm").find('input,select,textarea').not().attr('checked',true);
         }
     });
     form.on('submit(sendPaper)', function(data) {
@@ -32,7 +34,7 @@ layui.config({
         var i;
         var val = new Array(countt);
         var flag = true;
-        for(i = 0;i < countt;i++) {
+        for(i = 1;i < countt;i++) {
             var temp_name = 'q'+i;
             val[i] = $('input[name='+temp_name+']:checked').val();
             // alert(val[i]);

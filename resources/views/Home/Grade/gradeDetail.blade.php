@@ -41,8 +41,12 @@
         margin-top: 30px;
         margin-left: 30px;
     }
-    .info-font {
-        font-size: ;
+    .active_h {
+        color:#00B5AD;
+    }
+    .comment_tea {
+        font-size: 19px;
+        font-weight: bold;
     }
     .site-table tbody tr td {text-align: center;}
     /*.site-table tbody tr td .layui-btn+.layui-btn{margin-left: 0px;}*/
@@ -55,13 +59,14 @@
     /*}*/
 </style>
 @section('content')
+    <?php $name = session('stu_name_s'); ?>
     <div class="index-body">
         <div class="ui grid">
             <div class="three wide column">
                 <div class="test">
                     <div class="ui teal vertical  menu left" style="width: 100%">
                         <div class="ui item" style="height: 120px;">
-                            <img class="ui avatar image" style="height:82px;width: 82px; border-radius: 50%;" src="{{ URL::asset('static/img/default1.jpg') }}"> Student
+                            <img class="ui avatar image" style="height:82px;width: 82px; border-radius: 50%;" src="{{ URL::asset('static/img/default1.jpg') }}"> {{  $name }}
 
                         </div>
                         <div class="item">
@@ -98,7 +103,7 @@
                 <div class="somepanel">
                     <div class="ui stacked segments test-type1" style="margin-left: 2%;margin-top: 3%;">
                         <div class="ui segment">
-                            <p>成绩查看 \ 成绩详情</p>
+                            <p><a href="{{URl('home/gradeIndex')}}">成绩查看</a> \ <a href="" class="active_h">成绩详情</a></p>
                         </div>
                         <div class="ui teal segment" style="min-height: 65vh;">
                             {{--<div class="echarts1" id="echarts-test" style="height:300px;"></div>--}}
@@ -147,11 +152,11 @@
                                             </div>
                                             <div class="" style="margin-top: 100px;">
                                                 @if($score >= 80)
-                                                <p>评语：哎哟，还不错呢，同学！</p>
+                                                <p><span class="comment_tea"><i class="icon edit"></i>评语：</span>哎哟，还不错呢，同学！</p>
                                                     @elseif($score < 60)
                                                 <p>评语：分数有点低呢，怎么了？</p>
                                                     @else
-                                                    <p>评语：再接再厉，继续加油喔~~~</p>
+                                                    <p><span class="comment_tea"><i class="icon edit"></i>评语：</span></i>：再接再厉，继续加油喔~~~</p>
                                                 @endif
                                             </div>
                                         </div>

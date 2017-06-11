@@ -51,9 +51,9 @@
                     <a href="javascript:;" class="layui-btn layui-btn-small addSingle">
                         <i class="layui-icon">&#xe608;</i> 添加单个题目
                     </a>
-                    <a href="javascript:;" class="layui-btn layui-btn-small addList">
-                        <i class="layui-icon">&#xe608;</i> 导入题目
-                    </a>
+                    {{--<a href="javascript:;" class="layui-btn layui-btn-small addList">--}}
+                        {{--<i class="layui-icon">&#xe608;</i> 导入题目--}}
+                    {{--</a>--}}
 
                     <div class=" layui-input-block" style="display: inline-block; margin-left: 2px; vertical-align: bottom;">
                         <div class="layui-form-pane courseList">

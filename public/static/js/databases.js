@@ -78,9 +78,6 @@ layui.config({
             url: addHandleUrl,
             type: 'POST',
             data: data.field,
-            error: function(request){
-                layer.msg("请求服务器超时", {time: 1000, icon: 5});
-            },
             success: function(data){
                 if (data.success){
                     layer.msg(data.msg, {
@@ -96,7 +93,15 @@ layui.config({
                     });
                 }
             }
-        });
+        })  //接收错误信息
+            .error(function (data) {
+                var errors = $.parseJSON(data.responseText);
+                $.each( errors, function( key, value ) {
+                    layer.msg(value[0],{icon:2},{time:3000});
+                    return false;
+                });
+
+            });
 
         return false;
     });

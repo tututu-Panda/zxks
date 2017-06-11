@@ -25,6 +25,7 @@
     /*}*/
 </style>
 @section('content')
+    <?php $name = session('stu_name_s'); ?>
     <div class="index-body">
         <div class="ui grid">
             {{--左侧菜单栏--}}
@@ -32,7 +33,7 @@
                 <div class="test">
                     <div class="ui teal vertical  menu left" style="width: 100%">
                         <div class="ui item" style="height: 120px;">
-                            <img class="ui avatar image" style="height:82px;width: 82px; border-radius: 50%;" src="{{ URL::asset('static/img/default1.jpg') }}"> Student
+                            <img class="ui avatar image" style="height:82px;width: 82px; border-radius: 50%;" src="{{ URL::asset('static/img/default1.jpg') }}"> {{ $name }}
 
                         </div>
                         <div class="item">
