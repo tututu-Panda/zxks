@@ -1,7 +1,9 @@
 @extends('Home.layouts.layout')
 @section('title')
+    <link rel="stylesheet" type="text/css" href="{{URL::asset('static/layui/css/layui.css')}}" media="all">
     <title>Online exam在线考试系统</title>
 @endsection
+
 <style>
     .index-body {
         min-height: 85vh;
@@ -31,6 +33,17 @@
         padding-left: 20px;
         padding-bottom: 25px;
     }
+    .grade-table {
+        margin-top: 20px;
+        margin-bottom: 40px;
+    }
+
+    .site-table tbody tr td {text-align: center;}
+    /*.site-table tbody tr td .layui-btn+.layui-btn{margin-left: 0px;}*/
+    .admin-table-page {position: fixed;z-index: 19940201;bottom: 0;width: 100%;background-color: #eee;border-bottom: 1px solid #ddd;left: 0px;}
+    .admin-table-page .page{padding-left:20px;}
+    .admin-table-page .page .layui-laypage {margin: 6px 0 0 0;}
+    .table-hover tbody tr:hover{ background-color: #EEEEEE; }
     /*.single-test {*/
     /*margin: .875em 1em;*/
     /*}*/
@@ -79,20 +92,53 @@
                 <div class="somepanel">
                     <div class="ui stacked segments test-type1" style="margin-left: 2%;margin-top: 3%;">
                         <div class="ui segment">
-                            <p>成绩分析</p>
+                            <p>成绩查看</p>
                         </div>
-                        <div class="ui teal segment">
-                            <div class="echarts1" id="echarts-test" style="height:300px;"></div>
+                        <div class="ui teal segment" style="min-height: 65vh;">
+                            {{--<div class="echarts1" id="echarts-test" style="height:300px;"></div>--}}
+                            <div class="grade-table">
+                                <h4 class="ui horizontal divider header">
+                                    <i class="bar chart icon"></i>
+                                    历次考试
+                                </h4>
+                                <table class="ui  celled table site-table table-hover">
+                                    <thead>
+                                    <tr style="text-align: center;">
+                                        <th>编号</th>
+                                        <th>试卷名称</th>
+                                        <th>最终分数</th>
+                                        <th>开始时间</th>
+                                        <th>结束时间</th>
+                                        <th>操作</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody style="text-align: center;">
+                                    @foreach($listData as $v)
+                                        <tr>
+                                            <td>{{ $v->scoreId }}</td>
+                                            <td>{{ $v->paperName }}</td>
+                                            <td>{{ $v->score }}</td>
+                                            <td>{{ $v->sTime }}</td>
+                                            <td>{{ $v->eTime }}</td>
+                                            <td><a href="javascript:;" data-id="{{ $v->paperId }}" class="layui-btn layui-btn-normal layui-btn-small detail">查看详情</a></td>
+                                        </tr>
+                                        @endforeach
+                                    </tbody>
+                                </table>
+                                <div class="" style="margin-left: 38%;position: static;bottom: 0;">
+                                    <div id="page" ></div>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                    <div class="ui stacked segments test-type1" style="margin-left: 2%;margin-top: 3%; margin-bottom: 2%;">
-                        <div class="ui segment">
-                            <p>每次成绩</p>
-                        </div>
-                        <div class="ui pink segment">
-                            <div class="echarts1" id="echarts-test2" style="height:300px;"></div>
-                        </div>
-                    </div>
+                    {{--<div class="ui stacked segments test-type1" style="margin-left: 2%;margin-top: 3%; margin-bottom: 2%;">--}}
+                        {{--<div class="ui segment">--}}
+                            {{--<p>每次成绩</p>--}}
+                        {{--</div>--}}
+                        {{--<div class="ui pink segment">--}}
+                            {{--<div class="echarts1" id="echarts-test2" style="height:300px;"></div>--}}
+                        {{--</div>--}}
+                    {{--</div>--}}
                 </div>
             </div>
         </div>
@@ -101,13 +147,46 @@
 
         @endsection
         @section('script')
+            <script src="{{URL::asset('static/layui/layui.js')}}"></script>
             <script src="{{ URL::asset('static/jsbars/echarts.min.js') }}"></script>
             <script src="{{ URL::asset('static/js/home_gradeIndex.js') }}"></script>
             @parent
             <script type="text/javascript">
-                $(document).ready(function() {
-                    $(".start").click(function() {
-                        window.location.href = "subTest";
+                var detailUrl = "{{ url('home/Grade/gradeDetail') }}";
+                var pages = "{{ $pages }}";
+                var listUrl = "gradeIndex";
+                var curr = "{{ $requestPage }}";
+            </script>
+            <script type="text/javascript">
+                layui.config({
+
+                }).use(['layer', 'laypage'], function() {
+                    var layer = layui.layer,
+                            $ = layui.jquery,
+                            laypage = layui.laypage;
+
+
+                    //跳转详情
+                    $('.detail').on('click', function(){
+                        var paperId = $(this).data('id');
+                        window.location.href = detailUrl+'/'+paperId;
+                    });
+                    //分页
+                    laypage({
+                        cont: 'page',
+                        pages: pages //总页数
+                        ,
+                        groups: 5 //连续显示分页数
+                        ,
+                        skip: true, //是否开启跳页
+                        curr: curr,//获得当前页码
+                        jump: function(obj, first) {
+                            //得到了当前页，用于向服务端请求对应数据
+                            var curr = obj.curr;
+                            if(!first) {
+                                window.location.href=listUrl+"?requestPage="+curr;
+                            }
+                        }
                     });
                 });
             </script>

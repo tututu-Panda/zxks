@@ -71,22 +71,22 @@
             </div>
             <div class="thirteen wide column">
                 <div class="somepanel">
-
                    <div class="modify-form">
-                       <form class="ui form">
+                       <form class="ui form" id="pswForm">
+                           <input type="hidden" name="_token" value="{{csrf_token()}}"/>
                            <div class="field">
                                <label>原密码：</label>
-                               <input type="text" name="oldPassword" placeholder="请输入原密码">
+                               <input type="password" name="oldPassword" placeholder="请输入原密码" id="old">
                            </div>
                            <div class="field">
                                <label>新密码：</label>
-                               <input type="password" name="newPassword" placeholder="请输入新密码">
+                               <input type="password" name="newPassword" placeholder="请输入新密码" id="new">
                            </div>
                            <div class="field">
                                <label>再次输入密码：</label>
-                               <input type="password" name="renewPassword" placeholder="请再次输入原密码">
+                               <input type="password" name="renewPassword" placeholder="请再次输入原密码" id="renew">
                            </div>
-                           <button class="ui blue button" type="submit">保存</button>
+                           <button class="ui blue button" id="savePsw">保存</button>
                        </form>
                    </div>
 
@@ -104,10 +104,41 @@
         @endsection
         @section('script')
             @parent
-            <script type="text/javascript">
-                $(document).ready(function() {
-                    $(".start").click(function() {
-                        window.location.href = "subTest";
+            <script type="text/javascript" src="{{ URL::asset('static/layui/layui.js')}}"></script>
+            <script>
+                //var Handleurl = "{{ url('home/Index/PswHandle') }}";
+                var HandleUrl = "PswHandle";
+            </script>
+            <script>
+                layui.use(['layer'], function() {
+                    var $ = layui.jquery,
+                            layer = layui.layer;
+                    $("#savePsw").click(function() {
+                        if(pswForm.oldPassword.value == "" || pswForm.newPassword.value == "" || pswForm.renewPassword.value == "") {
+                            layer.msg('请将密码信息填写完整！',{time:2000});
+                        }else if(pswForm.newPassword.value !=  pswForm.renewPassword.value) {
+                            layer.msg('新密码与重复密码不一致！',{time:2000});
+                        }else {
+                            $.ajax({
+                                url: HandleUrl,
+                                type:'POST',
+                                data: $("#pswForm").serialize(),
+                                success: function(data) {
+                                    if(data.status){
+                                        layer.msg(data.msg,{time:1000,});
+                                        window.location.href = "logout";
+                                    }else {
+                                        layer.alert(data.msg, {
+                                            icon: 2,
+                                            title:'提示',
+                                        },function() {
+                                            location.reload();
+                                        });
+                                    }
+                                }
+                            });
+                        }
+                        return false;
                     });
                 });
             </script>
