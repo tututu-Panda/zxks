@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Models\Databases;
+use App\Models\FinalTest;
 use App\Models\Score;
 use App\Models\Student;
 use App\Models\TestPaper;
@@ -201,8 +203,45 @@ class ScoreController extends Controller
     public function details(Request $request){
         $testpaper = $request->get('testpape_id');
         $account = $request->get('account_id');
-        echo $testpaper."".$account;
-        return view('Admin.Score.details');
+
+        // 获得考卷名称
+        $testpaper_name = TestPaper::where('id',$testpaper)->select('name')->get()->toArray();
+        $testpaper_name = $testpaper_name[0]['name'];
+        // 获得姓名
+        $name = Student::where('id',$account)->select('name')->get()->toArray();
+        $name = $name[0]['name'];
+        // 获得总分
+        $finalScore = Score::where(['account'=>$account,'testpaper_id'=>$testpaper])->select('score')->get()->toArray();
+        $finalScore = $finalScore[0]['score'];
+
+        // 获得选择题正确数量
+        $choiceNum = FinalTest::where(['student_id'=>$account,'testpaper_id'=>$testpaper,'type_id'=>1,'is_true'=>1])->count();
+        // 获得填空题正确数量
+        $fillNum = FinalTest::where(['student_id'=>$account,'testpaper_id'=>$testpaper,'type_id'=>2,'is_true'=>1])->count();
+
+        // 获得困难题正确数量
+        $difficultNum = 0;
+        // 获得简易题正确数量
+        $easyNum = 0;
+
+        //获得所有题目
+        $question_ids = FinalTest::where(['student_id'=>$account,'testpaper_id'=>$testpaper])->select('question_id')->get()->toArray();
+        $databases = new Databases();
+        foreach ($question_ids as $vkey => $value){
+            $difficultType = $databases->getDifficultById($value['question_id']);
+            // 为困难题目
+            if($difficultType[0]['difficult'] == 3){
+                $difficultNum++;
+            }
+            // 简易题目
+            else if($difficultType[0]['difficult'] == 1){
+                $easyNum++;
+            }
+        }
+
+//        var_dump($difficultNum);
+//        exit();
+        return view('Admin.Score.details',compact('testpaper_name','name','finalScore','choiceNum','fillNum','difficultNum','easyNum'));
     }
 
 

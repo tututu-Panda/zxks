@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Requests\Admin\EditPaperRequest;
+use App\Http\Requests\Admin\UpdatePaperRequest;
 use App\Models\Databases;
 use App\Models\Student;
 use App\Models\TestPaper;
@@ -10,6 +11,7 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Input;
 
 
 /**
@@ -152,14 +154,41 @@ class PaperController extends Controller
      * Time : ${TIME}
      * @param Request $request
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
-     * 编辑试卷
+     * 编辑试卷模板显示
      */
     public function editPaper(Request $request){
         $id = $request->get('testpaper_id');
+        $testpaper_info = TestPaper::where('id',$id)->get()->toArray();
+        $testpaper_info = $testpaper_info[0];
 
-
-        return view('Admin/Paper/edit',compact('id'));
+        return view('Admin/Paper/edit',compact('id','testpaper_info'));
     }
 
+
+    /**
+     * Created by
+     * Author : pjy
+     * Date : ${DATE}
+     * Time : ${TIME}
+     * 更新试卷
+     */
+    public function upadtePaper(UpdatePaperRequest $request){
+        //经过验证规则后,更新试卷
+        $id = Input::get('id');
+        $testpaper = TestPaper::find($id);
+        $status = $testpaper->update($request->all());
+        if($status){
+            $return = array(
+                'data' => '更新成功！',
+                'status' => 'success'
+            );
+        }else {
+            $return = array(
+                'data' => '更新失败！',
+                'status' => false
+            );
+        }
+        return response()->json($return);
+    }
 
 }

@@ -69,6 +69,7 @@ Route::group(['middleware'=>'auth','namespace'=>'Admin','prefix'=>'admin'],funct
     Route::get("/Paper/setpaper","PaperController@setPaper");
     Route::get("/Paper/dbindex","PaperController@dbIndex");
     Route::post("/Paper/addpaper","PaperController@addPaper");
+    Route::post("/Paper/upadtepaper","PaperController@upadtePaper");
 
 
 

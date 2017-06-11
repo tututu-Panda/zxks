@@ -14,6 +14,7 @@
             <form class="layui-form">
                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
                 <input type="hidden" name="is_use" value="1">
+                <input type="hidden" name="exam_time" value="120">
                 <div class="left">
 
                     <div class="layui-form-item">
@@ -33,7 +34,7 @@
                             <label class="beg-login-icon" style="padding: 0px">
                                 <i class="fa fa-star" aria-hidden="true"></i>
                             </label>
-                            <input name="full_score" autocomplete="off" class="layui-input layui-disabled" type="text" value="100" >
+                            <input name="full_score" autocomplete="off" class="layui-input layui-disabled" type="text" value="100" readonly >
                         </div>
                     </div>
 
@@ -79,7 +80,7 @@
                             <label class="beg-login-icon" style="padding: 0px">
                                 <i class="fa fa-star-half-o" aria-hidden="true"></i>
                             </label>
-                            <input name="pass_score" autocomplete="off" class="layui-input layui-disabled" type="text" value="60">
+                            <input name="pass_score" autocomplete="off" class="layui-input layui-disabled" type="text" value="60" readonly>
                         </div>
                     </div>
 

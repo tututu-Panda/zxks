@@ -110,4 +110,16 @@ class Databases extends Model
         $info = $this::where('id',$id)->get()->toArray();
         return $info;
     }
+
+    /**
+     * Created by
+     * Author : pjy
+     * Date : ${DATE}
+     * Time : ${TIME}
+     * 根据题目id得到难度类型
+     */
+    public function getDifficultById($question_id){
+        $return = $this::where('id',$question_id)->select('difficult')->get()->toArray();
+        return $return;
+    }
 }
