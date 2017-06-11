@@ -71,7 +71,7 @@
                     <?php $i = 1; ?>
                     @foreach($choiceList as $q1)
                         <div class="layui-form-item">
-                            <p class="question_name">{{ $i }}.{{ $q1['question'] }}</p>
+                            <p class="question_name">{{ $i }}.{!! $q1['question'] !!}</p>
                             <div class="layui-input-block" style="padding-top: 15px;" >
                                 <div class="radio-style">
                                     <input type="radio" name="q{{ $i }}" value="A" title="A. {{ $q1['option_a'] }}" >
@@ -95,7 +95,7 @@
                     <?php $j = 1; ?>
                     @foreach($fillList as $q2)
                         <div class="layui-form-item">
-                            <p class="question_name">{{ $j }}.{{ $q2['question'] }}&nbsp;&nbsp;&nbsp;<input type="text" name="f{{ $j }}" class="tiankong" required  lay-verify="required"></p>
+                            <p class="question_name">{{ $j }}.{!! $q2['question'] !!}&nbsp;&nbsp;&nbsp;<input type="text" name="f{{ $j }}" class="tiankong" required  lay-verify="required"></p>
 
                         </div>
                         <?php $j++; ?>

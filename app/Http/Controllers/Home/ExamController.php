@@ -44,18 +44,19 @@ class ExamController extends Controller
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function examTest($id) {
+        date_default_timezone_set('PRC');           //设置时区为北京时间
         $detail = TestPaper::find($id)->toArray();
         $beginTime = $detail['beginDate'];          //获取考试开始时间
         $endTime = $detail['endDate'];              //获取考试结束时间
-        $nowTime = date("y-m-d h:i:s");             //获取当前的系统时间并格式化
+        $nowTime = date("Y-m-d H:i:s");             //获取当前的系统时间并格式化
         $stu_account = session('home_account');  //获取登录的session账户
         $stu_id = Student::where('account',$stu_account)->select('id')->first()->toArray(); //获取学生账户对应的id
         //判断时间
         //考试时间暂未到
-        if(strtotime($beginTime)>strtotime($nowTime)){
+        if(strtotime($nowTime) < strtotime($beginTime)){
             return "<script>alert('还未到考试时间');</script>";
         }
-        else if(strtotime($nowTime)>strtotime($endTime)){       //时间已经截止
+        else if(strtotime($nowTime) > strtotime($endTime)){       //时间已经截止
             return "<script>alert('考试时间已过了');</script>";
         }else {
 
