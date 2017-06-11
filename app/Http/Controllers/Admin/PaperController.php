@@ -32,23 +32,16 @@ class PaperController extends Controller
         // 接受信息
         $subject = $request->get('subject',"all");
         $is_use = $request->get('is_use',"all");
-        $map = array();
-        if($subject != "all"){
-            $map["type"] = $subject;
-        }
-
-        if($is_use != "all") {
-            $map['is_use'] = $is_use;
-        }
-
-//            $allpaper = TestPaper::all()->toArray();
-        $allpaper = TestPaper::where($map)->orderBy('is_use','desc')->get()->toArray();
-
-//        var_dump($allpaper);
-//        exit();
+        $requestPage = $request->get('requestPage', 1);	    //获取请求的页码数
+        $rows = 5;                                                     //每页展示数据
 
 
-        return view('Admin.Paper.index',compact('subject','is_use','allpaper'));
+        $Paper = new TestPaper();
+        $list = $Paper->getPaperList($subject,$is_use,$requestPage,$rows);
+        $allpaper = $list['list'];                      // 根据条件获得所有试卷
+        $pages = $list['pages'];                        // 获得相应页码
+
+        return view('Admin.Paper.index',compact('subject','is_use','allpaper','requestPage','pages'));
     }
 
 
