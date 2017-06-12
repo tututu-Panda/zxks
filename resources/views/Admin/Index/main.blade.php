@@ -50,8 +50,11 @@
                 <div class="row" style="background-color: #f5f5fa">
                     {{--访问数据--}}
                     <div class="look-data ">
-                        <div class="panel-heading">
-                            <h3 class="panel-title" style="padding:20px 25px 25px 0px;">在线统计</h3>
+                        <div class="list-title">
+                            <div class="tpl-caption font-green" style="padding-left: 15px;">
+                                <i class="fa fa-bar-chart" aria-hidden="true"></i>
+                                <span>在线统计</span>
+                            </div>
                         </div>
                         <div id="data" style="height: 300px;"></div>
                     </div>
@@ -89,11 +92,12 @@
                                                 </tr>
                                                 </thead>
                                                 <tbody>
+                                                @foreach($usePaper as $paper)
                                                 <tr class="success">
-                                                    <td>java测试卷</td>
-                                                    <td>2015-08-15 05:05:05</td>
+                                                    <td>{{$paper['name']}}</td>
+                                                    <td>{{$paper['beginDate']}}</td>
                                                 </tr>
-
+                                                    @endforeach
                                                 </tbody>
                                             </table>
                                         </div>
@@ -110,11 +114,14 @@
                                                 </tr>
                                                 </thead>
                                                 <tbody>
+                                                @if($stopPaper !="")
+                                                @foreach($stopPaper as $paper)
                                                 <tr class="info">
-                                                    <td>java测试卷2</td>
-                                                    <td>2015-08-15 05:05:05</td>
+                                                    <td>{{$paper['name']}}</td>
+                                                    <td>{{$paper['beginDate']}}</td>
                                                 </tr>
-
+                                                    @endforeach
+                                                    @endif
                                                 </tbody>
                                             </table>
                                         </div>
@@ -140,31 +147,24 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr class="success">
-                                            <td>1</td>
-                                            <td>test</td>
-                                            <td>100/10</td>
+                                    @foreach($rank as $key=>$value)
+                                        <tr
+                                                @if($key==0)
+                                                class="success"
+                                                @elseif($key==1)
+                                                    class="info"
+                                                @elseif($key==2)
+                                                    class="warning"
+                                                @else
+                                                    class="active"
+                                                @endif
+                                        >
+                                            <td>{{$key=$key+1}}</td>
+                                            <td>{{$value['name']}}</td>
+                                            <td>{{$value['score']}}/{{$value['count']}}</td>
                                         </tr>
-                                        <tr class="info">
-                                            <td>2</td>
-                                            <td>test</td>
-                                            <td>100/10</td>
-                                        </tr>
-                                        <tr class="warning">
-                                            <td>3</td>
-                                            <td>test</td>
-                                            <td>100/10</td>
-                                        </tr>
-                                        <tr class="active">
-                                            <td>4</td>
-                                            <td>test</td>
-                                            <td>100/10</td>
-                                        </tr>
-                                        <tr class="active">
-                                            <td>5</td>
-                                            <td>test</td>
-                                            <td>100/10</td>
-                                        </tr>
+                                        @endforeach
+
 
                                     </tbody>
                                 </table>

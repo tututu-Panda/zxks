@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 
 class Score extends Model
 {
@@ -168,6 +169,35 @@ class Score extends Model
      * 得到平均分最高的５位学生
      */
     public function getHighAveStu(){
+        // 得到学生列表
+        $student = $this->select('account')->groupBy("account")->get()->toArray();
+//        $student = DB::table('scores')
+//            ->join('students','scores.account','=','students.account')
+//            ->select('students.account','students.name')
+//            ->groupBy('account')->get();
+        // 遍历学生,查询每个学生的平均分
+        $scores=[];
 
+        // 求得每个学生的平均分
+        foreach ($student as $key=>$value){
+            $scores[$key]['score'] = $this->where('account',$value)->avg('score');
+        }
+        arsort($scores);        //根据平均分对数组进行从高到低排序
+
+        // 求得试卷数
+        foreach ($student as $key=>$value){
+            $scores[$key]['count'] = $this->where('account',$value)->count();
+        }
+        arsort($scores);        //根据试卷数对数组进行从高到低排序
+
+        // 获得名称
+        foreach ($student as $key=>$value) {
+            $name = Student::select('name')->where('account',$value)->get()->toArray();
+            $scores[$key]['name'] = $name[0]['name'];
+        }
+//        var_dump($scores);
+//        exit();
+        $scores =array_slice($scores,0,5);
+        return $scores;
     }
 }

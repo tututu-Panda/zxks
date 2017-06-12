@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Models\Databases;
+use App\Models\Score;
 use App\Models\Student;
 use App\Models\Sysuser;
 use App\Models\TestPaper;
@@ -48,16 +49,16 @@ class IndexController extends Controller
 
         // 试卷状态
         $testpaper = new TestPaper();
-        $usePaper = $testpaper->getPaperList('all','1','1','5');
+        $usePaper = $testpaper->getPaperList('all','1','1','5');        //取出偏移量为1,5列表
         $usePaper = $usePaper['list'];
         $stopPaper = $testpaper->getPaperList('all','0','1','5');
         $stopPaper = $stopPaper['list'];
 
-
         // 排行榜
+        $score = new Score();
+        $rank = $score->getHighAveStu();
 
-        return view("Admin.Index.main",compact('stuNum','baseNum','useNum','stopNum'));
+        return view("Admin.Index.main",compact('stuNum','baseNum','useNum','stopNum','usePaper','stopPaper','rank'));
     }
-
 
 }
