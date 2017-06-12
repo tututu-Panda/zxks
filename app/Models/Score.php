@@ -159,4 +159,15 @@ class Score extends Model
 
         return $data;
     }
+
+    /**
+     * Created by
+     * Author : pjy
+     * Date : ${DATE}
+     * Time : ${TIME}
+     * 得到平均分最高的５位学生
+     */
+    public function getHighAveStu(){
+
+    }
 }

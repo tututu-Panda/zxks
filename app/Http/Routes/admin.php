@@ -22,6 +22,7 @@ Route::group(['middleware'=>'auth','namespace'=>'Admin','prefix'=>'admin'],funct
     Route::get('/logout','LoginController@LogOut');
 //    登录首页显示
     Route::get('/','IndexController@Index');
+    Route::get('/main','IndexController@main');
 
 
 //    个人信息管理
