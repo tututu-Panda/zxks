@@ -37,7 +37,9 @@
         margin-top: 20px;
         margin-bottom: 40px;
     }
-
+    .active_h {
+        color:#00B5AD;
+    }
     .site-table tbody tr td {text-align: center;}
     /*.site-table tbody tr td .layui-btn+.layui-btn{margin-left: 0px;}*/
     .admin-table-page {position: fixed;z-index: 19940201;bottom: 0;width: 100%;background-color: #eee;border-bottom: 1px solid #ddd;left: 0px;}
@@ -49,13 +51,14 @@
     /*}*/
 </style>
 @section('content')
+    <?php $name = session('stu_name_s'); ?>
     <div class="index-body">
         <div class="ui grid">
             <div class="three wide column">
                 <div class="test">
                     <div class="ui teal vertical  menu left" style="width: 100%">
                         <div class="ui item" style="height: 120px;">
-                            <img class="ui avatar image" style="height:82px;width: 82px; border-radius: 50%;" src="{{ URL::asset('static/img/default1.jpg') }}"> Student
+                            <img class="ui avatar image" style="height:82px;width: 82px; border-radius: 50%;" src="{{ URL::asset('static/img/default1.jpg') }}"> {{ $name }}
 
                         </div>
                         <div class="item">
@@ -92,7 +95,7 @@
                 <div class="somepanel">
                     <div class="ui stacked segments test-type1" style="margin-left: 2%;margin-top: 3%;">
                         <div class="ui segment">
-                            <p>成绩查看</p>
+                            <p><a href="" class="active_h">成绩查看</a></p>
                         </div>
                         <div class="ui teal segment" style="min-height: 65vh;">
                             {{--<div class="echarts1" id="echarts-test" style="height:300px;"></div>--}}

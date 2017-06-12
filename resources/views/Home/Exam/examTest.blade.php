@@ -19,30 +19,37 @@
         .time {
             font-weight: bold;
         }
+        .question_type {
+            font-size: 17px;
+            font-weight: 300;
+        }
+        .question_name {
+            font-size: 14px;
+            font-weight: 400;
+            color:#000000;
+        }
     </style>
 </head>
 <body>
 <div class="left-fixed">
-    <blockquote class="layui-elem-quote ">*&nbsp;注意事项</blockquote>
-        <table align="center" cellspacing="50%" style="line-height: 28px;font-size: 16px;color: #404040;">
+    <blockquote class="layui-elem-quote" style="color:red;font-size: 18px;">*&nbsp;注意事项</blockquote>
+        <table align="center" cellspacing="50%" style="line-height: 28px;font-size: 13px;color: #404040;margin-left: 20px;margin-right: 10px;">
             <th>
-            <td colspan="2" style="text-align: center;font-size: 19px;"></td>
+            <td colspan="2" style="text-align: center;font-size: 15px;"></td>
             </th>
             <tr>
-                <td>1.&nbsp;</td>
-                <td>请独立完成本试卷;</td>
+
+                <td>1.&nbsp;请独立完成本试卷;</td>
             </tr>
             <tr>
-                <td>2.&nbsp;</td>
-                <td>请注意时间分配</td>
+                <td>2.&nbsp;请注意时间分配</td>
             </tr>
             <tr>
-                <td>3.&nbsp;</td>
-                <td>请将填空题答案格式正确的填在每题末尾横线上</td>
+
+                <td>3.&nbsp;请将填空题答案格式正确的填在每题末尾横线上</td>
             </tr>
             <tr>
-                <td>4.&nbsp;</td>
-                <td>mmmm</td>
+                <td>4.考试时间结束后，不能再继续答题，请点击提交</td>
             </tr>
         </table>
 
@@ -50,21 +57,21 @@
 <div class="middle-body">
     <div class="main-body">
         <div class="title" style="margin-top: 50px;">
-            <span class="titleH1" style="text-align: center;">第一次测试页面</span>
+            <span class="titleH1" style="text-align: center;">{{ $paperName }}</span>
         </div>
         <div class="" style="padding-top: 50px;padding-left: 30px;padding-bottom: 50px;">
             <div class="single question">
-                <form class="layui-form">
+                <form class="layui-form" id="examForm">
                     <input type="hidden" name="stuId" value="{{ $stuId }}"/>
                     <input type="hidden" name="paperId" value="{{ $paperId }}"/>
                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
                     <div style="margin-bottom: 10px;">
-                        <span>一，选择题（5分/道）</span>
+                        <span class="question_type">一，选择题（5分/道）</span>
                     </div>
-                    <?php $i = 0; ?>
+                    <?php $i = 1; ?>
                     @foreach($choiceList as $q1)
                         <div class="layui-form-item">
-                            <p>{{ $i }}.{{ $q1['question'] }}</p>
+                            <p class="question_name">{{ $i }}.{!! $q1['question'] !!}</p>
                             <div class="layui-input-block" style="padding-top: 15px;" >
                                 <div class="radio-style">
                                     <input type="radio" name="q{{ $i }}" value="A" title="A. {{ $q1['option_a'] }}" >
@@ -83,12 +90,12 @@
                         <?php $i++; ?>
                         @endforeach
                     <div style="margin-bottom: 10px;">
-                        <span>二，填空题（6分/道）</span>
+                        <span class="question_type">二，填空题（5分/道）</span>
                     </div>
-                    <?php $j = 0; ?>
+                    <?php $j = 1; ?>
                     @foreach($fillList as $q2)
                         <div class="layui-form-item">
-                            <p>{{ $j }}.{{ $q2['question'] }}&nbsp;&nbsp;&nbsp;<input type="text" name="f{{ $j }}" class="tiankong" required  lay-verify="required"></p>
+                            <p class="question_name">{{ $j }}.{!! $q2['question'] !!}&nbsp;&nbsp;&nbsp;<input type="text" name="f{{ $j }}" class="tiankong" required  lay-verify="required"></p>
 
                         </div>
                         <?php $j++; ?>
@@ -136,7 +143,7 @@
             var countt = "{{ $i }}";
             var endTime = "{{ $endTime }}";
             var sendUrl = "{{ url('home/Exam/checkPaper') }}";
-            var afterUrl = "/gradeIndex";
+            var afterUrl = "/home/gradeIndex";
     </script>
     <script src="{{ URl::asset('static/jsbars/jquery.jcountdown.js') }}"></script>
     <script src="{{ URl::asset('static/js/home_exam.js') }}"></script>

@@ -24,4 +24,7 @@ class Student extends Model implements AuthenticatableContract, CanResetPassword
     //修改默认的字段名称 更新和创建时间段
     const UPDATED_AT='update_time';
     const CREATED_AT = 'create_time';
+
+    //白名单
+    protected $fillable = ['account', 'name', 'password', 'info', 'phone','sex','email','create_time','update_time'];
 }

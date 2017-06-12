@@ -44,20 +44,21 @@ class ExamController extends Controller
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function examTest($id) {
+        date_default_timezone_set('PRC');           //设置时区为北京时间
         $detail = TestPaper::find($id)->toArray();
         $beginTime = $detail['beginDate'];          //获取考试开始时间
         $endTime = $detail['endDate'];              //获取考试结束时间
-        $nowTime = date("y-m-d h:i:s");             //获取当前的系统时间并格式化
+        $nowTime = date("Y-m-d H:i:s");             //获取当前的系统时间并格式化
         $stu_account = session('home_account');  //获取登录的session账户
         $stu_id = Student::where('account',$stu_account)->select('id')->first()->toArray(); //获取学生账户对应的id
         //判断时间
         //考试时间暂未到
-//        if(strtotime($beginTime)>strtotime($nowTime)){
-//            return "<script>alert('还未到考试时间');</script>";
-//        }
-//        else if(strtotime($nowTime)>strtotime($endTime)){       //时间已经截止
-//            return "<script>alert('考试时间已过了');</script>";
-//        }else {
+        if(strtotime($nowTime) < strtotime($beginTime)){
+            return "<script>alert('还未到考试时间');</script>";
+        }
+        else if(strtotime($nowTime) > strtotime($endTime)){       //时间已经截止
+            return "<script>alert('考试时间已过了');</script>";
+        }else {
 
             $idsArr_cho = explode(',',$detail['choice_ids']);       //将题号集合转化为数组，方便下面条件查找
             $idsArr_fill = explode(',',$detail['fill_ids']);
@@ -66,8 +67,9 @@ class ExamController extends Controller
             $fillList = $DataTemp->getPaperQues($idsArr_fill);      //获取填空题
             $paperId = $id;
             $stuId = $stu_id['id'];
-            return view('Home.Exam.examTest',compact('choiceList','fillList','endTime','paperId','stuId'));
-//        }
+            $paperName = $detail['name'];
+            return view('Home.Exam.examTest',compact('choiceList','fillList','endTime','paperId','stuId','paperName'));
+        }
 
     }
 
@@ -80,7 +82,7 @@ class ExamController extends Controller
     public function checkPaper(Request $request) {
         //获取所有的表单数据
         $input = $request->all();
-        die;
+        //p($input);die;
         $detail = TestPaper::find($input['paperId'])->toArray();  //获取该试卷的信息
         $idsArr_cho = explode(',',$detail['choice_ids']);       //将题号集合转化为数组，方便下面条件查找
         $idsArr_fill = explode(',',$detail['fill_ids']);
@@ -100,12 +102,12 @@ class ExamController extends Controller
         $choice_count = 0;        //记录正确的选择题
         $fill_count = 0;        //记录正确的填空题
         //循环匹配检查选择题的答案
-        for($i = 0;$i < $input['i'];$i++) {
-            if($input['q'.$i] == $choiceAns_one[$i]) {
+        for($i = 1;$i < $input['i'];$i++) {
+            if($input['q'.$i] == $choiceAns_one[$i-1]) {
                 DB::table('finaltests')->insert([
                     'testpaper_id' => $input['paperId'],
                     'student_id' => $input['stuId'],
-                    'question_id' => $idsArr_cho[$i],
+                    'question_id' => $idsArr_cho[$i-1],
                     'type_id' => 1,
                     'is_true' => 1        //1正确，0错误
                 ]);
@@ -114,19 +116,19 @@ class ExamController extends Controller
                 DB::table('finaltests')->insert([
                     'testpaper_id' => $input['paperId'],
                     'student_id' => $input['stuId'],
-                    'question_id' => $idsArr_cho[$i],
+                    'question_id' => $idsArr_cho[$i-1],
                     'type_id' => 1,
                     'is_true' => 0
                 ]);
             }
         }
         //循环匹配检查填空题的答案，判断输入的填空题是否存在于答案数组中
-        for($j = 0;$j < $input['j'];$j++) {
-            if(in_array($input['f'.$j], $fillAns_one[$j])) {
+        for($j = 1;$j < $input['j'];$j++) {
+            if(in_array($input['f'.$j], $fillAns_one[$j-1])) {
                 DB::table('finaltests')->insert([
                     'testpaper_id' => $input['paperId'],
                     'student_id' => $input['stuId'],
-                    'question_id' => $idsArr_fill[$j],
+                    'question_id' => $idsArr_fill[$j-1],
                     'type_id' => 2,
                     'is_true' => 1
                 ]);
@@ -135,7 +137,7 @@ class ExamController extends Controller
                 DB::table('finaltests')->insert([
                     'testpaper_id' => $input['paperId'],
                     'student_id' => $input['stuId'],
-                    'question_id' => $idsArr_fill[$j],
+                    'question_id' => $idsArr_fill[$j-1],
                     'type_id' => 2,
                     'is_true' => 0
                 ]);

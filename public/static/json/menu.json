@@ -9,6 +9,11 @@
         "title": "个人信息",
         "icon": "&#xe612;",
         "href": "admin/Sysuser/index"
+      },
+      {
+        "title":"学生管理",
+        "icon":"&#xe612;",
+        "href": "admin/Student/index"
       }
     ]
   },

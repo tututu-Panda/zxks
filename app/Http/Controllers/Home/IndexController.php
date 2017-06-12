@@ -26,6 +26,10 @@ class IndexController extends Controller
      */
     public function index()
     {
+        $stu_account = session('home_account');
+        $info = Student::where('account',$stu_account)->first()->toArray();
+        // 存储用户session
+        session(['stu_name_s' => $info['name']]);
         return view('Home.Index.index');
     }
 

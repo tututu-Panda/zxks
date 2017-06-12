@@ -134,7 +134,9 @@
                 <label class="layui-form-label">答案</label>
                 <div class="layui-input-block">
                     <input type="text" name="answer" placeholder="请输入答案" autocomplete="off" class="answer layui-input">
+                    <div class="layui-form-mid layui-word-aux">如果有多种不同形式答案，请用符号"/_"分隔，如 1947/_一九四七</div>
                 </div>
+
             </div>
         </div>
 
@@ -232,9 +234,11 @@
                         {
                             if(data2.success){
                                 // 关闭当前窗口
-                                layer.msg(data2.msg, {time: 3000,icon: 1});
-                                var index = parent.getFrameIndex(window.name);
-                                layer.close(index);
+                                layer.msg(data2.msg, {time: 3000,icon: 1}, function(){
+                                    location.reload();
+                                });
+
+//                                layer.close();
                             }else {
                                 layer.msg(data2.msg, {time: 3000,icon: 2});
                             }

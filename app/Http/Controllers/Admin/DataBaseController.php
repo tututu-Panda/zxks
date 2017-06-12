@@ -18,6 +18,7 @@ use App\Models\DatabaseType;
  * Class DataBaseController
  * @package App\Http\Controllers\Admin
  */
+date_default_timezone_set('PRC');           //设置时区为北京时间
 class DataBaseController extends Controller
 {
     /**
