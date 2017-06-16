@@ -23,10 +23,10 @@ class GradeController extends Controller
         $requestPage = $request->get('requestPage',1); //获取请求的页码数，默认为1
         $stu_account = session('home_account');  //获取登录的session账户
         $stu_id = Student::where('account',$stu_account)->select('id')->first()->toArray(); //获取学生账户对应的id
-        $paperList = DB::table('scores as t1')->where('t1.account',$stu_id)->leftJoin('testpapers as t2', 't1.testpaper_id','=','t2.id')->
+        $paperList = DB::table('scores as t1')->where('t1.account',$stu_account)->leftJoin('testpapers as t2', 't1.testpaper_id','=','t2.id')->
         select('t1.id as scoreId','t1.account as scoreAcco','t1.testpaper_id as paperId','t1.score as score','t1.start_time as sTime','t1.end_time as eTime','t2.name as paperName')->
         orderBy('t1.id','desc')->get();
-        $total = DB::table('scores')->where('account',$stu_id)->count(); //统计该学生的所有成绩信息条数
+        $total = DB::table('scores')->where('account',$stu_account)->count(); //统计该学生的所有成绩信息条数
         $pages = 0;     //初始化页数变量
         $rows = 3;      //设置每页显示的条数
         if($total%$rows == 0) {
@@ -54,7 +54,7 @@ class GradeController extends Controller
         $stu_id = Student::where('account',$stu_account)->select('id')->first()->toArray(); //获取学生账户对应的id
         //统计该套试卷该名学生的错题个数
         $defaultC = DB::table('finaltests')->where(['testpaper_id'=>$paperId,'student_id'=>$stu_id,'is_true'=>0])->count();
-        $scoreArr = Scores::where(['testpaper_id'=>$paperId,'account'=>$stu_id])->select('score')->get()->toArray();
+        $scoreArr = Scores::where(['testpaper_id'=>$paperId,'account'=>$stu_account])->select('score')->get()->toArray();
         $score = $scoreArr[0]['score'];     //获取该卷的成绩分数
         //错误的选择题的数目
         $choiceFault = DB::table('finaltests')->where(['type_id'=>1,'is_true'=>1])->count();

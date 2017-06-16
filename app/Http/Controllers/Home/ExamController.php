@@ -28,7 +28,7 @@ class ExamController extends Controller
     {
         $stu_account = session('home_account');  //获取登录的session账户
         $stu_id = Student::where('account',$stu_account)->select('id')->first()->toArray(); //获取学生账户对应的id
-        $testedPaper = Scores::where('account',$stu_id)->select('testpaper_id')->get()->toArray();      //获取已经考过的试卷ID
+        $testedPaper = Scores::where('account',$stu_account)->select('testpaper_id')->get()->toArray();      //获取已经考过的试卷ID
         $notIds = array_column($testedPaper, 'testpaper_id');           //将二维数组转为一维数组
         $javapaperList = TestPaper::where('type',1)->whereNotIn('id',$notIds)->get()->toArray();
         $cpaperList = TestPaper::where('type',2)->whereNotIn('id',$notIds)->get()->toArray();
@@ -143,7 +143,8 @@ class ExamController extends Controller
                 ]);
             }
         }
-        $jsonData = $this->addScore($input['stuId'],$input['paperId'],$choice_count,$fill_count,$detail['beginDate']);
+        $stu = Student::where('id',$input['stuId'])->select('account')->first()->toArray(); //获取学生账户对应的id
+        $jsonData = $this->addScore($stu['account'],$input['paperId'],$choice_count,$fill_count,$detail['beginDate']);
         return response()->json($jsonData);
     }
 
