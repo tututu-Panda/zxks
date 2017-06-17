@@ -120,7 +120,7 @@ class TestPaper extends Model
         // 获得总数
         $total = $this->where($map)->count();
         // 根据偏移量获得数据
-        $list = $this->where($map)->skip($skip)->take($rows)->orderBy('type')->get()->toArray();
+        $list = $this->where($map)->skip($skip)->take($rows)->orderBy('type')->orderBy('beginDate','desc')->get()->toArray();
 
         $data = [
             'pages' => ceil($total / $rows),
