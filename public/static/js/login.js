@@ -16,9 +16,12 @@ layui.config({
             //ajax验证验证码
             $.post(checkurl,{code:rec.field['verify_code'],_token:rec.field['_token']},function(data, textStatus, xhr){
                 if(!data.success){
-                    layer.alert('验证码错误!', {
+                    layer.msg('验证码错误!', {
                         icon: 2,
                         title:'提示',
+                        time:1000
+                    },function(){
+                        $(".vary").click();
                     });
                 }else{
                     $.post(loginurl,{account:rec.field['account'],password:rec.field['password'],_token:rec.field['_token']}, function(data, textStatus, xhr) {

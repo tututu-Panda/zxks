@@ -34,7 +34,7 @@
                     <i class="layui-icon">&#xe64e;</i>
                 </label>
                 <input type="text" name="verify_code"  autocomplete="off" placeholder="输入验证码" class="layui-input login-code-input beg-pull-left" >
-                <img  src="{{ URL('/admin/login/captcha/1') }}" class='loin-code-box-img beg-pull-right' title="点击刷新" onclick="this.src='{{ url('/admin/login/captcha') }}/'+Math.random();">
+                <img  src="{{ URL('/admin/login/captcha/1') }}" class='vary loin-code-box-img beg-pull-right' title="点击刷新" onclick="this.src='{{ url('/admin/login/captcha') }}/'+Math.random();">
             </div>
             <div class="layui-form-item">
                 <div class="beg-pull-left beg-login-remember">
