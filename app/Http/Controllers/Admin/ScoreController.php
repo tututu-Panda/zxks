@@ -127,7 +127,7 @@ class ScoreController extends Controller
         $testpaper_name = TestPaper::where('id',$testpaper)->select('name')->get()->toArray();
         $testpaper_name = $testpaper_name[0]['name'];
         // 获得姓名
-        $name = Student::where('id',$account)->select('name')->get()->toArray();
+        $name = Student::where('account',$account)->select('name')->get()->toArray();
         $name = $name[0]['name'];
         // 获得总分
         $finalScore = Score::where(['account'=>$account,'testpaper_id'=>$testpaper])->select('score')->get()->toArray();

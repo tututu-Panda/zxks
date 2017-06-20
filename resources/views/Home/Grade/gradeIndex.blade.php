@@ -106,8 +106,7 @@
                                 </h4>
                                 <table class="ui  celled table site-table table-hover">
                                     <thead>
-                                    <tr style="text-align: center;">
-                                        <th>编号</th>
+                                    <tr style="text-align: center;"><th>编号</th>
                                         <th>试卷名称</th>
                                         <th>最终分数</th>
                                         <th>开始时间</th>

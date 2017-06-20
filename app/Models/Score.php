@@ -39,9 +39,8 @@ class Score extends Model
                 // 获得总数
                 $total =Score::where(array('account'=>$student[0]['id'],'testpaper_id'=>$testpaper))->count();
                 // 根据偏移量得到数据
-                $score = Score::where(array('account'=>$student[0]['id'],'testpaper_id'=>$testpaper))
+                $score = Score::where(array('account'=>$student[0]['account'],'testpaper_id'=>$testpaper))
                     ->orderBy('testpaper_id')->skip($skip)->take($rows)->orderBy('id')->get()->toArray();
-
                 foreach ($score as $key=>$value){
                     $paper_name = TestPaper::select('name','type')->where('id', $value['testpaper_id'])->get()->toArray(); //获得试卷名称
                     $students[$key]['account'] = $student[0]['account'];
@@ -78,7 +77,7 @@ class Score extends Model
                     $paper_name = TestPaper::select('name')->where('id', $value['testpaper_id'])->get()->toArray(); //获得试卷名称
                     //                    var_dump($paper_name);
                     //                    exit();
-                    $account = Student::select('name')->where('id', $value['account'])->get()->toArray(); //获得学生姓名
+                    $account = Student::select('name')->where('account', $value['account'])->get()->toArray(); //获得学生姓名
                     $type = TestPaper::select('type')->where('name', $paper_name[0]['name'])->get()->toArray();
                     $students[$key]['testpaper_name'] = $paper_name[0]['name'];
                     $students[$key]['name'] = $account[0]['name'];
