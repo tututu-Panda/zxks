@@ -129,7 +129,7 @@ class SysuserController extends Controller
             // 验证成功，修改密码
             $newpass = $request->get('new_password');
             $new_hash = Hash::make($newpass);
-            $status = Sysuser::where('id',$id)->update('password',$new_hash);
+            $status = Sysuser::where('id',$id)->update(['password'=>$new_hash]);
             if($status) {
                 $return = array(
                     'status' => 'success',
